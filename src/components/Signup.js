@@ -1,47 +1,54 @@
 import { useState } from 'react';
+import Errors from './Errors';
 
-function Signup() {
+function Signup({ handleLogin, errors }) {
 
     const [userState, setUserState] = useState({})
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        fetch('/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(userState)
+        })
+        .then(res => res.json())
+        .then(json => {
+            handleLogin(json)
+        })
     }
 
     const onChange = (e) => {
-        setUserState({ ...userState, [e.target.name]: e.target.value})
+        setUserState({ ...userState, [e.target.name]:e.target.value })
     }
 
     return (
         <div>
-            <br/>
-            <form>
-                {/* <h1>Sign up</h1>
-                <label>Username
-                    <input type='text' value={username} onChange={(e) => setUsername(e.target.value) } />
-                </label>
-                <label>Password
-                    <input type='password' value={password} onChange={(e) => setPassword(e.target.value) } />
-                </label> */}
-
+            <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>Account signup</legend>
+                    <legend>Watchables Account Signup</legend>
                     <br/>
+                    <label>Email<br/>
+                        <input onChange={onChange} type='text' name='email'/>
+                    </label><br/>
                     <label>Username<br/>
-                        <input onChange={onChange} type='text' name='username'/></label><br/>
+                        <input onChange={onChange} type='text' name='username'/>
+                    </label><br/>
                     <label>Password<br/>
-
+                        <input onChange={onChange} type="password" name='password'/>
                     </label><br/>
                     <label>Confirm password<br/>
-
+                        <input onChange={onChange} type="password" name='password_confirmation'/>
                     </label><br/>
-
+                    <input type='submit' value="Signup!"></input>
+                    <br/>
                 </fieldset>
-
-
             </form>
+            <Errors errors={errors} />
         </div>
     )
 }

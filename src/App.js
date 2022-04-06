@@ -1,7 +1,7 @@
 // Test rails connection and routes
 // browser: localhost:4000 and /testing
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
 
 /* MVP
 import NavBar from '
@@ -24,6 +24,23 @@ import WatchablesEdit from './components/WatchablesEdit.js';
 import WatchablesFave from './components/WatchablesFave.js';
 
 function App() {
+  const [errors, setErrors] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const history = useHistory();
+
+  function handleState(data) {
+    if(!data.errors) {
+      setCurrentUser(data)
+    }
+  }
+
+  function handleLogin(data) {
+    data.errors ? setErrors(data.errors) : handleState(data)
+    if(!data.errors) {
+      history.pushState('/watchables')
+      setErrors([])
+    }
+  }
 
   //this exists to verify that the BE connectivity works properly
   const [count, setCount] = useState(0);
@@ -46,7 +63,7 @@ function App() {
           </Route>
 
           <Route path="/signup">
-            <Signup />
+            <Signup handleLogin={handleLogin} errors={errors} />
           </Route>
 
           <Route path="/login">
