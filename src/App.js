@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 /* MVP
-navbar
+import NavBar from '
 account signup
 login
 logout
