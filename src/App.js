@@ -3,6 +3,17 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+/* MVP
+navbar
+account signup
+login
+logout
+watchables list
+add watchable
+edit watchable
+favorites
+*/
+
 function App() {
   const [count, setCount] = useState(0);
 
