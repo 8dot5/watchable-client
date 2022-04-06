@@ -1,5 +1,5 @@
 // Test rails connection and routes
-// localhost:4000 and /testing
+// browser: localhost:4000 and /testing
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
