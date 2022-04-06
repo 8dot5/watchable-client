@@ -11,14 +11,14 @@ function Signup({ handleLogin, errors }) {
         fetch('/users', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(userState)
         })
         .then(res => res.json())
-        .then(json => {
-            handleLogin(json)
+        .then(data => {
+            console.log(data, 'signup fetch')
+            handleLogin(data)
         })
     }
 
@@ -27,7 +27,7 @@ function Signup({ handleLogin, errors }) {
     }
 
     return (
-        <div>
+        <div className="signupLoginForm">
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Watchables Account Signup</legend>
@@ -39,13 +39,14 @@ function Signup({ handleLogin, errors }) {
                         <input onChange={onChange} type='text' name='username'/>
                     </label><br/>
                     <label>Password<br/>
-                        <input onChange={onChange} type="password" name='password'/>
+                        <input onChange={onChange} type='password' name='password'/>
                     </label><br/>
                     <label>Confirm password<br/>
-                        <input onChange={onChange} type="password" name='password_confirmation'/>
+                        <input onChange={onChange} type='password' name='password_confirmation'/>
                     </label><br/>
-                    <input type='submit' value="Signup!"></input>
+                    <input type='submit' value='Signup!'></input>
                     <br/>
+                    <p>Already have an account? <a href='/login'>Login</a></p>
                 </fieldset>
             </form>
             <Errors errors={errors} />

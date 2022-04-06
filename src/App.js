@@ -67,7 +67,7 @@ function App() {
           </Route>
 
           <Route path="/login">
-            <h1>Login</h1>
+            <Login handleLogin={handleLogin} errors={errors} />
           </Route>
 
           <Route path="/logout">
