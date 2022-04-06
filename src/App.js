@@ -3,7 +3,29 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+/* MVP
+import NavBar from '
+account signup
+login
+logout
+watchables list
+add watchable
+edit watchable
+favorites
+*/
+
+import NavBar from './components/NavBar.js';
+import Signup from './components/Signup.js';
+import Login from './components/Login.js';
+import Logout from './components/Logout.js';
+import WatchablesList from './components/WatchablesList.js';
+import WatchablesAdd from './components/WatchablesAdd.js';
+import WatchablesEdit from './components/WatchablesEdit.js';
+import WatchablesFave from './components/WatchablesFave.js';
+
 function App() {
+
+  //this exists to verify that the BE connectivity works properly
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -14,14 +36,43 @@ function App() {
 
   return (
     <BrowserRouter>
+      <NavBar />
+
       <div className="App">
         <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
+
+          <Route exact path="/test">
+            <h1>Testing the backend | Page Count: {count}</h1>
           </Route>
-          <Route path="/">
-            <h1>Page Count: {count}</h1>
+
+          <Route path="/signup">
+            <h1>Signup</h1>
           </Route>
+
+          <Route path="/login">
+            <h1>Login</h1>
+          </Route>
+
+          <Route path="/logout">
+            <h1>Logout</h1>
+          </Route>
+
+          <Route path="/watchables">
+            <h1>Watchables</h1>
+          </Route>
+
+          <Route path="/add">
+            <h1>Add a Watchable</h1>
+          </Route>
+
+          <Route path="/edit">
+            <h1>Edit a Watchable</h1>
+          </Route>
+
+          <Route path="/favorite">
+            <h1>Favorite a Watchable</h1>
+          </Route>
+
         </Switch>
       </div>
     </BrowserRouter>
