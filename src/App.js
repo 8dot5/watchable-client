@@ -26,7 +26,17 @@ import WatchablesFave from './components/WatchablesFave.js';
 function App() {
   const [errors, setErrors] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+
   const history = useHistory();
+
+  function handleLogin(data) {
+    console.log('handleLogin')
+    data.errors ? setErrors(data.errors) : handleState(data)
+    if(!data.errors) {
+      history.push('/watchables')
+      setErrors([])
+    }
+  }
 
   function handleState(data) {
     if(!data.errors) {
@@ -34,13 +44,7 @@ function App() {
     }
   }
 
-  function handleLogin(data) {
-    data.errors ? setErrors(data.errors) : handleState(data)
-    if(!data.errors) {
-      history.pushState('/watchables')
-      setErrors([])
-    }
-  }
+
 
   //this exists to verify that the BE connectivity works properly
   const [count, setCount] = useState(0);
@@ -75,7 +79,7 @@ function App() {
           </Route>
 
           <Route path="/watchables">
-            <h1>Watchables</h1>
+            <WatchablesList />
           </Route>
 
           <Route path="/add">
