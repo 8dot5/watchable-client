@@ -1,6 +1,18 @@
 function WatchablesList() {
+
+    const renderCard = () => {
+
+        return (
+            <Card />
+        )
+    }
+
     return (
-        <h1>Watchables List</h1>
+        <div>
+            <h1>Watchables List</h1>
+            {renderCard}
+        </div>
+
     )
 }
 
