@@ -59,7 +59,7 @@ function App() {
         <Switch>
 
           <Route exact path="/test">
-            <h1>Testing the backend | Page Count: {count}</h1>
+            <h1>Testing the backend connection | Page Count: {count}</h1>
           </Route>
 
           <Route path="/signup">
@@ -71,7 +71,7 @@ function App() {
           </Route>
 
           <Route path="/logout">
-            <h1>Logout</h1>
+            <Logout setCurrentUser={setCurrentUser} />
           </Route>
 
           <Route path="/watchables">
