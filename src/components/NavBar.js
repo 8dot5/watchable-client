@@ -6,9 +6,10 @@ const NavBar = ({ currentUser }) => {
 
   return (
         <div>
-            <Navbar fixed="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+            {/* <Navbar fixed="top" collapseOnSelect expand="md" bg="dark" variant="dark"> */}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <Container>
-                {/* <Navbar.Brand href="#home">Watchables List</Navbar.Brand> */}
+
                 <Navbar.Brand href="/">🍿 Watchables List</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -52,7 +53,8 @@ const NavBar = ({ currentUser }) => {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-            </Navbar>
+            {/* </Navbar> */}
+            </nav>
         </div>
     );
 };
