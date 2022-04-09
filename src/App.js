@@ -1,18 +1,5 @@
-// Test rails connection and routes
-// browser: localhost:4000 and /testing
-import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
-
-/* MVP
-import NavBar from '
-account signup
-login
-logout
-watchables list
-add watchable
-edit watchable
-favorites
-*/
+import { Switch, Route, useHistory, BrowserRouter } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 import NavBar from './components/NavBar.js';
 import Signup from './components/Signup.js';
@@ -23,81 +10,125 @@ import WatchablesAdd from './components/WatchablesAdd.js';
 import WatchablesEdit from './components/WatchablesEdit.js';
 import WatchablesFave from './components/WatchablesFave.js';
 
+import Static from './components/Static.js';
+import Account from './components/Account.js';
+
+import './App.css';
+
 function App() {
-  const [errors, setErrors] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
+
+  const [errors, setErrors] = useState([])
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  const [watchables, setWatchables] = useState([])
+  const [watchablesEdit, setWatchablesEdit] = useState({})
+
+  const [categories, setCategories] = useState([])
+  const [userCategories, setUserCategories] = useState([])
+
+  const [favorites, setFavorites] = useState([])
 
   const history = useHistory();
 
-  function handleLogin(data) {
-    console.log('handleLogin')
+  // Handling FE user login (from login.js)
+  const handleLogin = (data) => {
     data.errors ? setErrors(data.errors) : handleState(data)
     if(!data.errors) {
-      history.push('/watchables')
+      history.push('/watchables-list')
       setErrors([])
     }
   }
 
+  // Checking the session
+  useEffect(() => {
+    fetch('/me')
+    .then(resp => resp.json())
+    .then(data => {
+      handleState(data)
+      // fetching Categories from BE
+      fetchCategories()
+    })
+  }, [])
+
   function handleState(data) {
-    if(!data.errors) {
-      setCurrentUser(data)
+    if(!data.errors){
+        setCurrentUser(data)
+        setWatchables(data.watchables)
+        setUserCategories(data.categories)
+        setFavorites(filterFavorites(data.watchables))
+    } else {
+      setWatchables([])
+      setFavorites([])
     }
+  }
+
+  function fetchCategories() {
+    fetch('/categories')
+    .then(resp => resp.json())
+    .then(data => setCategories(data))
   }
 
 
 
+  function filterFavorites(watchables) {
+    return watchables.filter(watchable => {
+      return watchables.favorite == true
+    })
+  }
 
-  //this exists to verify that the BE connectivity works properly
-  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    fetch("/hello") //this works if localhost:3000 is added to the package.json
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+return (
+  <BrowserRouter>
+    <NavBar currentUser={currentUser} />
 
-  return (
-    <BrowserRouter>
-      <NavBar />
+    <div className="App">
+      <Switch>
+        <Route exact path="/signup">
+          <Signup handleLogin={handleLogin} errors={errors} />
+        </Route>
 
-      <div className="App">
-        <Switch>
+        <Route exact path="/login">
+          <Login handleLogin={handleLogin} errors={errors} />
+        </Route>
 
-          <Route exact path="/test">
-            <h1>Testing the backend connection | Page Count: {count}</h1>
-          </Route>
+        <Route exact path="/logout">
+          <Logout setCurrentUser={setCurrentUser} />
+        </Route>
 
-          <Route path="/signup">
-            <Signup handleLogin={handleLogin} errors={errors} />
-          </Route>
+        <Route exact path="/watchables-list">
+          <WatchablesList currentUser={currentUser} userCategories={userCategories} watchables={watchables} setWatchables={setWatchables} setWatchablesEdit={setWatchablesEdit} favorites={favorites} setFavorites={setFavorites}/>
+        </Route>
 
-          <Route path="/login">
-            <Login handleLogin={handleLogin} errors={errors} />
-          </Route>
+        <Route exact path="/add">
+          <WatchablesAdd categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables}/>
+        </Route>
 
-          <Route path="/logout">
-            <Logout setCurrentUser={setCurrentUser} />
-          </Route>
+        <Route exact path="/favorites">
 
-          <Route path="/watchables">
-            <WatchablesList />
-          </Route>
+          <WatchablesFave
+            errors={errors} watchables={watchables}
+            favorites={favorites} setWatchablesEdit={setWatchablesEdit}
+          />
+          {/*setFavorites={setFavorites} */}
+        </Route>
 
-          <Route path="/add">
-            <h1>Add a Watchable</h1>
-          </Route>
+        <Route exact path="/edit">
+          <WatchablesEdit categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} watchablesEdit={watchablesEdit} />
+        </Route>
 
-          <Route path="/edit">
-            <h1>Edit a Watchable</h1>
-          </Route>
+        <Route exact path="/account">
+          <Account />
+        </Route>
 
-          <Route path="/favorite">
-            <h1>Favorite a Watchable</h1>
-          </Route>
 
-        </Switch>
-      </div>
-    </BrowserRouter>
+        <Route exact path="/">
+          <Static />
+        </Route>
+
+      </Switch>
+    </div>
+  </BrowserRouter>
   );
 }
 

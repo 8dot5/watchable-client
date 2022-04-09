@@ -1,0 +1,24 @@
+.watchables-add-edit-page {
+    padding-top: 100px;
+}
+
+.page-title {
+    text-align: center;
+    position: center;
+    font-size: 1.5em;
+    margin: auto;
+    width: 50%;
+    border: 5px solid #FFFF00;
+    padding: 10px;
+}
+
+.form-add {
+    position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-add {
+    width: 100%;
+}

@@ -1,8 +1,39 @@
-.App {
-  text-align: center;
+.spinner {
+  position: fixed;
+  left: 45%;
 }
 
-.App-logo {
+.App {
+  background-color: #111;
+  height:  100vh;
+  color: rgb(117, 119, 124);
+}
+
+
+
+
+
+/* body {
+  background-image: url(https://c.tenor.com/88dnH_mHRLAAAAAC/static-tv-static.gif);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.static-background {
+
+  background-image: url(https://c.tenor.com/88dnH_mHRLAAAAAC/static-tv-static.gif);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+
+} */
+
+
+/* Consider the bottom ? */
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +66,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

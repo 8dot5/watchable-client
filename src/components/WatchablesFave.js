@@ -1,7 +1,30 @@
-function WatchablesFave() {
+
+import CardContainer from './CardContainer'
+// import '../App.css'
+import '../styles/FavoritesPage.css'
+
+const WatchablesFave = ({ watchables, favorites, setFavorites, setWatchablesEdit, setWatchables, userCategories }) => {
+
+
+    const renderCard = () => {
+        console.log(watchables, 'rendering the cards')
+        return watchables.map((watchable) => {
+            return <CardContainer key={watchable.id} watchable={watchable} setWatchablesEdit={setWatchablesEdit} watchables={watchables} setWatchables={setWatchables} favorites={favorites} setFavorites={setFavorites} userCategories={userCategories} />
+        })
+    }
+
     return (
-        <h1>Watchables Favorites</h1>
+        <div className='favorites-page'>
+            <div className='page-title'>Faves</div>
+
+            <br />
+            <div className='page-title'>
+                {renderCard()}
+            </div>
+        </div>
     )
 }
 
-export default WatchablesFave;
+
+export default WatchablesFave
+

@@ -1,57 +1,70 @@
-import { useState } from 'react';
-import Errors from './Errors';
+import React from 'react'
+import { useState } from 'react'
+import Errors from './Errors'
 
-function Signup({ handleLogin, errors }) {
+import '../styles/SignupPage.css'
 
-    const [userState, setUserState] = useState({})
+const Signup = ({ handleLogin, errors }) => {
 
-    function handleSubmit(e) {
-        e.preventDefault()
-
-        fetch('/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userState)
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data, 'signup fetch')
-            handleLogin(data)
-        })
-    }
+    const [state, setState] = useState({})
 
     const onChange = (e) => {
-        setUserState({ ...userState, [e.target.name]:e.target.value })
+        setState({ ...state, [e.target.name]: e.target.value})
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const config = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(state)
+        }
+        fetch('/users', config)
+            .then(resp => resp.json())
+            .then(data => {
+                handleLogin(data)})
     }
 
     return (
-        <div className="signupLoginForm">
+        <div className='signup-page'>
+            <div className="page-title">
             <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>Watchables Account Signup</legend>
+                    <legend>Sign up for a new Watchables Account!</legend>
                     <br/>
-                    <label>Email<br/>
-                        <input onChange={onChange} type='text' name='email'/>
-                    </label><br/>
-                    <label>Username<br/>
-                        <input onChange={onChange} type='text' name='username'/>
-                    </label><br/>
-                    <label>Password<br/>
-                        <input onChange={onChange} type='password' name='password'/>
-                    </label><br/>
-                    <label>Confirm password<br/>
-                        <input onChange={onChange} type='password' name='password_confirmation'/>
-                    </label><br/>
-                    <input type='submit' value='Signup!'></input>
+                    <label>Username
+                        <br/>
+                        <input onChange={onChange} className='input' id='username' type='text' name='username'/>
+                    </label>
                     <br/>
-                    <p>Already have an account? <a href='/login'>Login</a></p>
+                    <br/>
+                    <label>Email
+                    <br/>
+                        <input onChange={onChange} className='input' type='text' name='email'/>
+                    </label>
+                    <br/>
+                    <label>Password
+                    <br/>
+                        <input onChange={onChange} className='input' type='password' name='password'/>
+                    </label>
+
+                    <br/>
+                    <label>Confirm password
+                    <br/>
+                        <input onChange={onChange} className='input' type='password' name='password_confirmation'/>
+                    </label>
+                    <br/>
+                    <br/>
+                    <input id='submit' type="submit"></input>
                 </fieldset>
             </form>
+            </div>
             <Errors errors={errors} />
         </div>
     )
 }
 
-export default Signup;
+export default Signup

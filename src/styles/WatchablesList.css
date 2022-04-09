@@ -1,0 +1,25 @@
+.watchables-page {
+    padding-top: 100px;
+}
+
+.page-title {
+    text-align: center;
+    position: center;
+    font-size: 1.5em;
+    margin: auto;
+    width: 50%;
+    border: 5px solid #FFFF00;
+    padding: 10px;
+}
+
+.watchables-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 40px;
+    margin-top: 50px;
+    margin-right: 4%;
+    margin-bottom: 50px;
+    background-color: #111;
+    width: 100vw;
+}
