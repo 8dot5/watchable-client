@@ -35,7 +35,6 @@ function App() {
   const handleLogin = (data) => {
     data.errors ? setErrors(data.errors) : handleState(data)
     if(!data.errors) {
-      history.push('/watchables-list')
       setErrors([])
     }
   }

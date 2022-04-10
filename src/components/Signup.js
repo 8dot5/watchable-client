@@ -1,32 +1,36 @@
-import React from 'react'
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Errors from './Errors'
 
 import '../styles/SignupPage.css'
 
-const Signup = ({ handleLogin, errors }) => {
+function Signup({ handleLogin, errors }) {
+    const [state, setState] = useState({});
+    const history = useHistory();
 
-    const [state, setState] = useState({})
-
-    const onChange = (e) => {
+    function onChange(e) {
         setState({ ...state, [e.target.name]: e.target.value})
     };
 
-    const handleSubmit = (e) => {
+    function handleSubmit(e) {
         e.preventDefault()
-        const config = {
-            method: "POST",
+
+        // calling the BE
+        fetch('/users', {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(state)
-        }
-        fetch('/users', config)
-            .then(resp => resp.json())
-            .then(data => {
-                handleLogin(data)})
-    }
+        })
+        .then(resp => resp.json())
+        // then, doing FE things
+        .then(data => {
+            console.log(data, 'signup data')
+            handleLogin(data)
+            history.push('/watchables-list')
+        });
+    };
 
     return (
         <div className='signup-page'>
@@ -58,7 +62,7 @@ const Signup = ({ handleLogin, errors }) => {
                     </label>
                     <br/>
                     <br/>
-                    <input id='submit' type="submit"></input>
+                    <input id='submit' type='submit'></input>
                 </fieldset>
             </form>
             </div>
@@ -67,4 +71,4 @@ const Signup = ({ handleLogin, errors }) => {
     )
 }
 
-export default Signup
+export default Signup;

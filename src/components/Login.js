@@ -1,32 +1,30 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import Errors from "./Errors";
+import Errors from './Errors';
 
 import '../styles/LoginPage.css'
 
 function Login({ handleLogin, errors }) {
     const [state, setState] = useState({});
-
     const history = useHistory();
 
-    const onChange = (e) => {
+    function onChange(e) {
         setState({ ...state, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    function handleSubmit(e) {
     e.preventDefault();
 
-    let config = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(state),
-    };
-
     // calling the BE
-    fetch("/login", config)
+    fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(state)
+    })
         .then((res) => res.json())
+        // then, doing FE things
         .then((data) => {
             console.log(data, 'login data')
             handleLogin(data)
@@ -51,7 +49,7 @@ function Login({ handleLogin, errors }) {
                     </label>
                     <br/>
                     <br/>
-                    <input id='submit' type="submit"></input>
+                    <input id='submit' type='submit'></input>
                 </fieldset>
             </form>
             <br/>
