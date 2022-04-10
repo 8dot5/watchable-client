@@ -53,10 +53,8 @@ const WatchablesAdd = ({ categories, setWatchables, errors, watchables }) => {
 
     return (
         <div className='watchables-add-edit-page'>
-            <br />
-            <h5 className='page-title'>Add a Watchable</h5>
-            <br />
-            <br />
+            <div className='page-title'>Add a Watchable</div>
+            {/* <h5 className='page-title'>Add a Watchable</h5> */}
             <div className='form-add'>
                 <form onSubmit={handleCreateWatchable}>
                     <input onChange={onChange} type="text" name='title' placeholder="The Watchable's title" size='50'></input><br/>

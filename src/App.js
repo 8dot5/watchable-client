@@ -77,9 +77,8 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<NavBar currentUser={currentUser} />
-
 			<div className='App'>
+				<NavBar currentUser={currentUser} />
 				<Switch>
 					<Route exact path='/signup'>
 						<Signup handleLogin={handleLogin} errors={errors} />
