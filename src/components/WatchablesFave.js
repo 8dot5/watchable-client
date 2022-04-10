@@ -1,7 +1,8 @@
 
 import CardContainer from './CardContainer'
 // import '../App.css'
-import '../styles/FavoritesPage.css'
+// import '../styles/FavoritesPage.css'
+import '../styles/WatchablesList.css'
 
 const WatchablesFave = ({ watchables, favorites, setFavorites, setWatchablesEdit, setWatchables, userCategories }) => {
 
@@ -16,9 +17,7 @@ const WatchablesFave = ({ watchables, favorites, setFavorites, setWatchablesEdit
     return (
         <div className='favorites-page'>
             <div className='page-title'>Faves</div>
-
-            <br />
-            <div className='page-title'>
+            <div className='watchables-grid'>
                 {renderCard()}
             </div>
         </div>

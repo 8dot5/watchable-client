@@ -1,5 +1,5 @@
-import { Switch, Route, useHistory, BrowserRouter } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { Switch, Route, useHistory, BrowserRouter } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import NavBar from './components/NavBar.js';
 import Signup from './components/Signup.js';
@@ -17,118 +17,106 @@ import './App.css';
 
 function App() {
 
-  const [errors, setErrors] = useState([])
+	const [errors, setErrors] = useState([])
 
-  const [currentUser, setCurrentUser] = useState(null)
+	const [currentUser, setCurrentUser] = useState(null)
 
-  const [watchables, setWatchables] = useState([])
-  const [watchablesEdit, setWatchablesEdit] = useState({})
+	const [watchables, setWatchables] = useState([])
+	const [watchablesEdit, setWatchablesEdit] = useState({})
 
-  const [categories, setCategories] = useState([])
-  const [userCategories, setUserCategories] = useState([])
+	const [categories, setCategories] = useState([])
+	const [userCategories, setUserCategories] = useState([])
 
-  const [favorites, setFavorites] = useState([])
+	const [favorites, setFavorites] = useState([])
 
-  const history = useHistory();
+	const history = useHistory();
 
-  // Handling FE user login (from login.js)
-  const handleLogin = (data) => {
-    data.errors ? setErrors(data.errors) : handleState(data)
-    if(!data.errors) {
-      setErrors([])
-    }
-  }
+	// Handles FE user login (from login.js)
+	const handleLogin = (data) => {
+		data.errors ? setErrors(data.errors) : handleState(data)
+		if(!data.errors) {
+			setErrors([])
+		}
+	}
 
-  // Checking the session
-  useEffect(() => {
-    fetch('/me')
-    .then(resp => resp.json())
-    .then(data => {
-      handleState(data)
-      // fetching Categories from BE
-      fetchCategories()
-    })
-  }, [])
+	// Checking the session
+	useEffect(() => {
+		fetch('/me')
+		.then(resp => resp.json())
+		.then(data => {
+			handleState(data)
+			// fetching Categories from BE
+			fetchCategories()
+		})
+	}, [])
 
-  function handleState(data) {
-    if(!data.errors){
-        setCurrentUser(data)
-        setWatchables(data.watchables)
-        setUserCategories(data.categories)
-        setFavorites(filterFavorites(data.watchables))
-    } else {
-      setWatchables([])
-      setFavorites([])
-    }
-  }
+	// Handles all state changes
+	function handleState(data) {
+		if(!data.errors){
+			setCurrentUser(data)
+			setWatchables(data.watchables)
+			setUserCategories(data.categories)
+			setFavorites(filterFavorites(data.watchables))
+		} else {
+			setWatchables([])
+			setFavorites([])
+		}
+	}
 
-  function fetchCategories() {
-    fetch('/categories')
-    .then(resp => resp.json())
-    .then(data => setCategories(data))
-  }
+	function fetchCategories() {
+		fetch('/categories')
+		.then(resp => resp.json())
+		.then(data => setCategories(data))
+	}
 
+	function filterFavorites(watchables) {
+		return watchables.filter(watchable => {
+			return watchables.favorite == true
+		})
+	}
 
+	return (
+		<BrowserRouter>
+			<NavBar currentUser={currentUser} />
 
-  function filterFavorites(watchables) {
-    return watchables.filter(watchable => {
-      return watchables.favorite == true
-    })
-  }
+			<div className='App'>
+				<Switch>
+					<Route exact path='/signup'>
+						<Signup handleLogin={handleLogin} errors={errors} />
+					</Route>
+					<Route exact path='/login'>
+						<Login handleLogin={handleLogin} errors={errors} />
+					</Route>
+					<Route exact path='/logout'>
+						<Logout setCurrentUser={setCurrentUser} />
+					</Route>
+					<Route exact path='/watchables-list'>
+						<WatchablesList currentUser={currentUser} userCategories={userCategories} watchables={watchables} setWatchables={setWatchables} setWatchablesEdit={setWatchablesEdit} favorites={favorites} setFavorites={setFavorites}/>
+					</Route>
+					<Route exact path='/add'>
+						<WatchablesAdd categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables}/>
+					</Route>
+					<Route exact path='/favorites'>
+						<WatchablesFave
+							errors={errors} watchables={watchables}
+							favorites={favorites} setWatchablesEdit={setWatchablesEdit}
+						/>
+						{/*setFavorites={setFavorites} */}
+					</Route>
 
-
-return (
-  <BrowserRouter>
-    <NavBar currentUser={currentUser} />
-
-    <div className="App">
-      <Switch>
-        <Route exact path="/signup">
-          <Signup handleLogin={handleLogin} errors={errors} />
-        </Route>
-
-        <Route exact path="/login">
-          <Login handleLogin={handleLogin} errors={errors} />
-        </Route>
-
-        <Route exact path="/logout">
-          <Logout setCurrentUser={setCurrentUser} />
-        </Route>
-
-        <Route exact path="/watchables-list">
-          <WatchablesList currentUser={currentUser} userCategories={userCategories} watchables={watchables} setWatchables={setWatchables} setWatchablesEdit={setWatchablesEdit} favorites={favorites} setFavorites={setFavorites}/>
-        </Route>
-
-        <Route exact path="/add">
-          <WatchablesAdd categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables}/>
-        </Route>
-
-        <Route exact path="/favorites">
-
-          <WatchablesFave
-            errors={errors} watchables={watchables}
-            favorites={favorites} setWatchablesEdit={setWatchablesEdit}
-          />
-          {/*setFavorites={setFavorites} */}
-        </Route>
-
-        <Route exact path="/edit">
-          <WatchablesEdit categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} watchablesEdit={watchablesEdit} />
-        </Route>
-
-        <Route exact path="/account">
-          <Account />
-        </Route>
-
-
-        <Route exact path="/">
-          <Static />
-        </Route>
-
-      </Switch>
-    </div>
-  </BrowserRouter>
-  );
+					<Route exact path='/edit'>
+						<WatchablesEdit categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} watchablesEdit={watchablesEdit} />
+					</Route>
+					<Route exact path='/account'>
+						<Account />
+					</Route>
+					<Route exact path='/'>
+						<Static />
+					</Route>
+				</Switch>
+			</div>
+		</BrowserRouter>
+	);
 }
 
 export default App;

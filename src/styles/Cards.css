@@ -35,6 +35,7 @@
 
 .card-back {
     overflow-x: hidden;
+    /* background-color: blue; */
 }
 
 /* Bootstrap list-group */

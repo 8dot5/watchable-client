@@ -4,53 +4,48 @@ import { useHistory } from 'react-router'
 
 import '../styles/Cards.css'
 
-const CardBack = ({watchable, setWatchablesEdit, watchables, setWatchables, setFavorites, favorites, userCategories }) => {
+function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setFavorites, favorites, userCategories }) {
 
     const {id} = watchable
 
     const history = useHistory()
 
-    const handleClick = () => {
+    function handleClick() {
         setWatchablesEdit(watchable)
         history.push ('/edit')
     }
 
-    const handleDeleteWatchable = () => {
-        let config = {
+    function handleDeleteWatchable() {
+        fetch(`/watchables/${id}`, {
             method: 'DELETE'
-        }
-
-        fetch(`/watchables/${id}`, config)
-            .then(res => res.json())
-            .then(data => {
-                setWatchables(
-                    watchables.filter(watchable => {
-                        return watchable.id !== id
-                    })
-                )
-            }
-        )
+        })
+        .then(res => res.json())
+        .then(data => {
+            setWatchables(
+                watchables.filter(watchable => {
+                    return watchable.id !== id
+                })
+            )
+        })
     }
 
-    const handleFavorite = (e) => {
+    function handleFavorite(e) {
         e.preventDefault()
-        let config = {
+        fetch(`/watchables/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({favorite: true})
-        }
-        fetch(`/watchables/${id}`, config)
-            .then(resp => resp.json())
-            .then(data => {
-                console.log(data, 'fave it')
-                if(!data.errors) {
-                    setFavorites([...favorites, data])
-                }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data, 'fave it')
+            if(!data.errors) {
+                setFavorites([...favorites, data])
             }
-        )
+        })
     }
 
     const filterFavorites = () => {
@@ -59,15 +54,14 @@ const CardBack = ({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
     const handleRemoveFavorite = (e) => {
         e.preventDefault()
-        let config = {
+        fetch(`/watchables/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify({favorite: false})
-        }
-        fetch(`/watchables/${id}`, config)
+        })
             .then(resp => resp.json())
             .then(data => {
                 console.log(data, 'remove fave')
@@ -77,8 +71,6 @@ const CardBack = ({watchable, setWatchablesEdit, watchables, setWatchables, setF
             }
         )
     }
-
-
 
     function truncate(str, n) {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;

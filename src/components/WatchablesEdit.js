@@ -9,13 +9,20 @@ const WatchablesEdit = ({ categories, errors, watchables, setWatchables, watchab
     const {id} = watchablesEdit
 
     const history = useHistory()
-    const [state, setState] = useState({title: watchablesEdit.title, summary: watchablesEdit.summary, poster_url: watchablesEdit.poster_url, trailer_url: watchablesEdit.trailer_url})
+    const [state, setState] = useState(
+        {
+            title: watchablesEdit.title,
+            summary: watchablesEdit.summary,
+            poster_url: watchablesEdit.poster_url,
+            trailer_url: watchablesEdit.trailer_url
+        }
+    )
 
-    const onChange = (e) => {
+    function onChange(e) {
         setState({ ...state, [e.target.name]: e.target.value})
     }
 
-    const handleUpdateWatchable = (e) => {
+    function handleUpdateWatchable(e) {
         e.preventDefault()
         let config = {
             method: 'PATCH',
@@ -36,14 +43,16 @@ const WatchablesEdit = ({ categories, errors, watchables, setWatchables, watchab
         )
     }
 
-    const renderCategories = () => {
+    function renderCategories() {
         return categories.map(category => {
-            return <option
-                key={category.id}
-                value={category.id}
+            return (
+                <option
+                    key={category.id}
+                    value={category.id}
                 >
                 {category.name}
                 </option>
+            )
         })
     }
 
