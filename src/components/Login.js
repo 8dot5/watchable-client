@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Errors from "./Errors";
 
 import '../styles/LoginPage.css'
 
-const Login = ({ handleLogin, errors }) => {
+function Login({ handleLogin, errors }) {
     const [state, setState] = useState({});
+
+    const history = useHistory();
 
     const onChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
@@ -27,7 +30,8 @@ const Login = ({ handleLogin, errors }) => {
         .then((data) => {
             console.log(data, 'login data')
             handleLogin(data)
-        });
+            history.push('/watchables-list')
+        }, 1000);
     };
 
     return (

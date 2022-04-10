@@ -1,40 +1,42 @@
-
-import { Spinner } from 'react-bootstrap'
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
-
+import Spinner from 'react-bootstrap/Spinner'
 import '../styles/LogoutPage.css'
 
-const Logout = ({ setCurrentUser }) => {
+
+function Logout({ setCurrentUser }) {
 
     const history = useHistory();
 
     useEffect(() => {
-        let config = {
-            method: "DELETE",
-        };
-
-        fetch("/logout", config);
+        fetch('/logout', {
+            method: 'DELETE'
+        })
+        .then(() => {
             handleLogout();
+        })
     });
 
-    const handleLogout = () => {
+    function handleLogout() {
         setCurrentUser(null);
         setTimeout(() => {
-            history.push("/login");
+            history.push('/login');
         }, 2000);
     };
 
     return (
         <div className='logout-page'>
+            {/* <div className='page-title'> */}
             <div className='spinner'>
-                <br />
-                <br />
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Good bye!</span>
+                <br/>
+                <br/>
+                <Spinner animation='border' role='status'>
+                    <span className='visually-hidden'></span>
                 </Spinner>
+                <h2>Logging you out</h2>
             </div>
-    </div>
+            {/* </div> */}
+        </div>
     );
 };
 

@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import '../styles/NavBar.css'
+
 //TODO add logo
 function NavBar({ currentUser }) {
   return (
@@ -40,38 +42,21 @@ function NavBar({ currentUser }) {
 				</Nav>
 
 				<Nav>
-
-
-					<NavDropdown>
-						{
-							currentUser
-							?
+					{
+						currentUser
+						?
+						<NavDropdown>
 							<NavDropdown.Item href='/add'>Add a Watchable</NavDropdown.Item>
-							:
-							null
-						}
-						{
-							currentUser
-							?
 							<NavDropdown.Item href='/account'>My account</NavDropdown.Item>
-							:
-							null
-						}
-						{
-							currentUser ? <NavDropdown.Divider /> : null
-						}
-						{
-							currentUser
-							?
+							<NavDropdown.Divider/>
 							<NavDropdown.Item href='/logout'>Logout</NavDropdown.Item>
-							:
-							<NavDropdown.Item href='/login'>Login</NavDropdown.Item>
-						}
-					</NavDropdown>
+						</NavDropdown>
+						:
+						null
+					}
 					<Navbar.Text>
-						{currentUser ? `Hi, ${currentUser.username}` : 'Login'}
+						{currentUser ? `Hi, ${currentUser.username}` : <a href='/login'>Login</a>}
 					</Navbar.Text>
-
 				</Nav>
 
 			</Navbar.Collapse>

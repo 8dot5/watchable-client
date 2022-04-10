@@ -1,7 +1,4 @@
-.spinner {
-  position: fixed;
-  left: 45%;
-}
+
 
 .App {
   background-color: #111;
@@ -9,7 +6,15 @@
   color: rgb(117, 119, 124);
 }
 
-
+/* .page-title {
+  text-align: center;
+  position: center;
+  font-size: 1.5em;
+  margin: auto;
+  width: 50%;
+  border: 5px solid #FFFF00;
+  padding: 10px;
+} */
 
 
 
