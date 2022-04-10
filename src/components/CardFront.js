@@ -2,7 +2,7 @@ import { Card } from 'react-bootstrap'
 
 import '../styles/Cards.css'
 
-const CardFront = ({watchable}) => {
+function CardFront({watchable}) {
     return (
         <div className='card-front'>
             <Card style={{ width: '14rem' }}>

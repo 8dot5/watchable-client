@@ -4,7 +4,7 @@ import Errors from './Errors'
 
 import '../styles/WatchablesAddEditPage.css'
 
-const WatchablesEdit = ({ categories, errors, watchables, setWatchables, watchablesEdit }) => {
+function WatchablesEdit({ categories, errors, watchables, setWatchables, watchablesEdit }) {
 
     const {id} = watchablesEdit
 
@@ -24,15 +24,14 @@ const WatchablesEdit = ({ categories, errors, watchables, setWatchables, watchab
 
     function handleUpdateWatchable(e) {
         e.preventDefault()
-        let config = {
+        fetch(`/watchables/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify(state)
-        }
-        fetch(`/watchables/${id}`, config)
+        })
             .then(resp => resp.json())
             .then(data => {
                 if(!data.errors) {
@@ -94,4 +93,4 @@ const WatchablesEdit = ({ categories, errors, watchables, setWatchables, watchab
     )
 }
 
-export default WatchablesEdit
+export default WatchablesEdit;

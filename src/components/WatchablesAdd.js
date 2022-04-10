@@ -4,36 +4,27 @@ import Errors from './Errors'
 
 import '../styles/WatchablesAddEditPage.css'
 
-const WatchablesAdd = ({ categories, setWatchables, errors, watchables }) => {
+function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
 
     const [state, setState] = useState({})
 
     const history = useHistory()
 
-    const onChange = (e) => {
+    function onChange(e) {
         setState({ ...state, [e.target.name]: e.target.value})
     }
 
-    const handleCreateWatchable = (e) => {
+    function handleCreateWatchable(e) {
         e.preventDefault()
-        console.log(e)
-        let config = {
+        fetch('/watchables', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
             body: JSON.stringify(state)
-        }
-
-        fetch('/watchables', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(state)
         })
-        .then(resp => resp.json())
+        .then(res => res.json())
         .then(data => {
             console.log(data)
             setWatchables([data, ...watchables])
@@ -41,7 +32,7 @@ const WatchablesAdd = ({ categories, setWatchables, errors, watchables }) => {
         })
     }
 
-    const renderCategories = () => {
+    function renderCategories() {
         return categories.map(category => {
             return (
             <option key={category.id} value={category.id}>

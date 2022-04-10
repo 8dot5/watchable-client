@@ -4,13 +4,13 @@ import CardBack from './CardBack'
 
 import '../styles/Cards.css'
 
-const CardContainer = ({ watchable, setWatchablesEdit, watchables, setWatchables, favorites, setFavorites, userCategories}) => {
+function CardContainer({ watchable, setWatchablesEdit, watchables, setWatchables, favorites, setFavorites, userCategories}) {
 
     const [show, setShow] = useState(true)
 
-    const handleFlippy = () => {
+    function handleFlippy() {
         setShow(!show)
-        }
+    }
 
     return (
         <div className='card-container'>
@@ -34,4 +34,4 @@ const CardContainer = ({ watchable, setWatchablesEdit, watchables, setWatchables
     )
 }
 
-export default CardContainer
+export default CardContainer;

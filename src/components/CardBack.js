@@ -48,11 +48,11 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
         })
     }
 
-    const filterFavorites = () => {
+    function filterFavorites() {
         return favorites.filter(favorite => favorite.id !== id)
     }
 
-    const handleRemoveFavorite = (e) => {
+    function handleRemoveFavorite(e) {
         e.preventDefault()
         fetch(`/watchables/${id}`, {
             method: 'PATCH',
@@ -62,14 +62,13 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
             },
             body: JSON.stringify({favorite: false})
         })
-            .then(resp => resp.json())
-            .then(data => {
-                console.log(data, 'remove fave')
-                if(!data.errors) {
-                    setFavorites(filterFavorites())
-                }
-            }
-        )
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data, 'remove fave')
+            // if(!data.errors) {
+                setFavorites(filterFavorites())
+            // }
+        })
     }
 
     function truncate(str, n) {
@@ -94,20 +93,25 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
                     <ListGroupItem><Card.Link href={watchable.trailer_url} target="_blank">Watch Watchable Trailer</Card.Link></ListGroupItem>
 
-                    {   watchable.favorite
-                        ?<ListGroupItem><Card.Link onClick={handleRemoveFavorite} href="#">Remove Favorite</Card.Link></ListGroupItem>
-                        :<ListGroupItem><Card.Link onClick={handleFavorite} href="#">Add to Favorites</Card.Link></ListGroupItem>
+                    {
+                        watchable.favorite
+                        ?
+                        <ListGroupItem><Card.Link onClick={handleRemoveFavorite} href="#">Remove Favorite</Card.Link></ListGroupItem>
+                        :
+                        <ListGroupItem><Card.Link onClick={handleFavorite} href="#">Add to Favorites</Card.Link></ListGroupItem>
                     }
                 </ListGroup>
 
                 <Card.Body>
-                    {   watchable.favorite ?
-                            <Card.Link onClick={handleClick}>Edit Watchable</Card.Link>
-                            :
-                            <>
-                            <Card.Link onClick={handleClick} href='#'>Edit Watchable</Card.Link>
-                            <br/>
-                            <Card.Link onClick={handleDeleteWatchable} href='#'>Delete Watchable</Card.Link>
+                    {
+                        watchable.favorite
+                        ?
+                        <Card.Link onClick={handleClick}>Edit Watchable</Card.Link>
+                        :
+                        <>
+                        <Card.Link onClick={handleClick} href='#'>Edit Watchable</Card.Link>
+                         <br/>
+                        <Card.Link onClick={handleDeleteWatchable} href='#'>Delete Watchable</Card.Link>
                         </>
                     }
                      <Card.Text>Updated: {truncate(watchable.updated_at, 11)}</Card.Text>

@@ -32,7 +32,7 @@ function App() {
 	const history = useHistory();
 
 	// Handles FE user login (from login.js)
-	const handleLogin = (data) => {
+	function handleLogin(data) {
 		data.errors ? setErrors(data.errors) : handleState(data)
 		if(!data.errors) {
 			setErrors([])

@@ -1,6 +1,6 @@
-const Errors = ({ errors }) => {
+function Errors({ errors }) {
 
-    const renderErrors = () => {
+    function renderErrors() {
         return errors.map(error => <ul><li>{error}</li></ul>)
 
 
