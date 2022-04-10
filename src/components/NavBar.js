@@ -58,6 +58,9 @@ function NavBar({ currentUser }) {
 							null
 						}
 						{
+							currentUser ? <NavDropdown.Divider /> : null
+						}
+						{
 							currentUser
 							?
 							<NavDropdown.Item href='/logout'>Logout</NavDropdown.Item>
