@@ -25,7 +25,11 @@ function NavBar({ currentUser }) {
 
 				<Nav className='me-auto'>
 					<Nav.Link href='/watchables-list'>Watchables List</Nav.Link>
-					{
+					<Nav.Link href='/add'>Add a Watchable</Nav.Link>
+					<Nav.Link href='/favorites'>View Favorites</Nav.Link>
+
+					{/* Conditional rendering nav items; commented this out because Nav items flashing upon page reloads */}
+					{/* {
 						currentUser
 						?
 						<Nav.Link href='/add'>Add a Watchable</Nav.Link>
@@ -38,7 +42,7 @@ function NavBar({ currentUser }) {
 						<Nav.Link href='/favorites'>View Favorites</Nav.Link>
 						:
 						null
-					}
+					} */}
 				</Nav>
 
 				<Nav>
