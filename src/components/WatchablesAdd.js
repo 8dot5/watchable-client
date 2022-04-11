@@ -26,7 +26,7 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
             setWatchables([data, ...watchables])
             history.push('/watchables-list')
         })

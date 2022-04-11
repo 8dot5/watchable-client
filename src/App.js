@@ -15,6 +15,28 @@ import Account from './components/Account.js';
 
 import './App.css';
 
+
+
+
+// function ProtectedRoute({ component: Comp, loggedIn }) => {
+//   route (
+//     <Route
+//     path={path}
+//     {...rest}
+//     render={(props) => {
+//       return loggedIn ? <Comp {...props} /> : <Redirect to={{
+//         pathname: '/',
+//         state: {
+//           prevLocation: path,
+//           error: 'You need to login first'
+//         }
+//       }} />
+//     }}
+//   )
+// }
+
+
+
 function App() {
 
 	const [errors, setErrors] = useState([])
@@ -31,7 +53,7 @@ function App() {
 
 	const history = useHistory();
 
-	// Handles FE user login (from login.js)
+	// Interstitial; helper points to handleState
 	function handleLogin(data) {
 		data.errors ? setErrors(data.errors) : handleState(data)
 		if(!data.errors) {
@@ -42,9 +64,10 @@ function App() {
 	// Checking the session
 	useEffect(() => {
 		fetch('/me')
-		.then(resp => resp.json())
+		.then(res => res.json())
 		.then(data => {
 			handleState(data)
+
 			// fetching Categories from BE
 			fetchCategories()
 		})
@@ -52,7 +75,8 @@ function App() {
 
 	// Handles all state changes
 	function handleState(data) {
-		if(!data.errors){
+		if(!data.errors ){
+			// console.log(data.watchables)
 			setCurrentUser(data)
 			setWatchables(data.watchables)
 			setUserCategories(data.categories)
@@ -65,13 +89,13 @@ function App() {
 
 	function fetchCategories() {
 		fetch('/categories')
-		.then(resp => resp.json())
+		.then(res => res.json())
 		.then(data => setCategories(data))
 	}
 
 	function filterFavorites(watchables) {
 		return watchables.filter(watchable => {
-			return watchables.favorite == true
+			return watchable.favorite === true
 		})
 	}
 
@@ -97,10 +121,8 @@ function App() {
 					</Route>
 					<Route exact path='/favorites'>
 						<WatchablesFave
-							errors={errors} watchables={watchables}
-							favorites={favorites} setWatchablesEdit={setWatchablesEdit}
+							favorites={favorites} watchables={watchables}
 						/>
-						{/*setFavorites={setFavorites} */}
 					</Route>
 
 					<Route exact path='/edit'>

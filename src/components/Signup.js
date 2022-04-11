@@ -26,7 +26,7 @@ function Signup({ handleLogin, errors }) {
         .then(res => res.json())
         // then, doing FE things
         .then(data => {
-            console.log(data, 'signup data')
+            // console.log(data, 'signup data')
             handleLogin(data)
             history.push('/watchables-list')
         });
