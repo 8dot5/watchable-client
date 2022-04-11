@@ -17,9 +17,20 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables, watchabl
 
     const history = useHistory()
 
-
     function handleCreateWatchable(e) {
         e.preventDefault()
+        switch (true) {
+            case (formData.title.length <1):
+                alert('Please enter Watchable title');
+                break;
+            case (!formData.rating || formData.rating === ''):
+                alert('Please enter Watchable rating');
+                break;
+            case (!formData.category_id || formData.category_id === ''):
+                alert('Please enter Watchable category');
+                break;
+            default:
+
         fetch('/watchables', {
             method: 'POST',
             headers: {
@@ -34,17 +45,7 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables, watchabl
             setWatchables([data, ...watchables])
             history.push('/watchables-list')
         })
-    }
-
-    function renderCategories() {
-        return categories.map(category => {
-            return (
-            <option key={category.id} value={category.id}>
-                {category.name}
-            </option>
-            )
-        })
-    }
+    }}
 
     // Handles default values
     let formData = {
@@ -92,6 +93,16 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables, watchabl
             <Errors errors={errors} />
         </div>
     )
+
+    function renderCategories() {
+        return categories.map(category => {
+            return (
+            <option key={category.id} value={category.id}>
+                {category.name}
+            </option>
+            )
+        })
+    }
 
     return (
         <div className='watchables-add-edit-page'>
