@@ -1,16 +1,13 @@
 import CardContainerFave from './CardContainerFave'
-// import '../App.css'
-// import '../styles/FavoritesPage.css'
-
-// using the WatchablesList.css for now
-import '../styles/WatchablesList.css'
+import '../App.css'
+import '../styles/FavoritesPage.css'
 
 function WatchablesFave({ watchables, favorites }) {
 
     function renderCard() {
-        console.log(watchables, 'rendering the cards')
         return watchables.map((watchable) => {
-            return <CardContainerFave key={watchable.id} watchable={watchable} watchables={watchables} favorites={favorites}/>
+            console.log(watchable)
+            return <CardContainerFave key={watchable.id} watchable={watchable} favorites={favorites}/>
         })
     }
 
