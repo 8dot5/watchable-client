@@ -32,7 +32,7 @@ function WatchablesEdit({ categories, errors, watchables, setWatchables, watchab
             },
             body: JSON.stringify(state)
         })
-            .then(resp => resp.json())
+            .then(res => res.json())
             .then(data => {
                 if(!data.errors) {
                     setWatchables(watchables.map(watchable => watchable.id === id ? data : watchable))

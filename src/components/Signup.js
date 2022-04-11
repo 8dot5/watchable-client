@@ -23,7 +23,7 @@ function Signup({ handleLogin, errors }) {
             },
             body: JSON.stringify(state)
         })
-        .then(resp => resp.json())
+        .then(res => res.json())
         // then, doing FE things
         .then(data => {
             console.log(data, 'signup data')

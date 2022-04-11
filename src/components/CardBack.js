@@ -62,7 +62,7 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
             },
             body: JSON.stringify({favorite: false})
         })
-        .then(resp => resp.json())
+        .then(res => res.json())
         .then(data => {
             console.log(data, 'remove fave')
             // if(!data.errors) {
