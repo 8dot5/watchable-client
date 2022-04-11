@@ -2,12 +2,11 @@ import CardContainerFave from './CardContainerFave'
 import '../App.css'
 import '../styles/FavoritesPage.css'
 
-function WatchablesFave({ watchables, favorites }) {
+function WatchablesFave({ favorites, watchables }) {
 
     function renderCard() {
         return favorites.map((watchable) => {
-            console.log(watchable)
-            return <CardContainerFave key={watchable.id} watchable={watchable} favorites={favorites}/>
+            return <CardContainerFave key={watchable.id} watchable={watchable} />
         })
     }
 
