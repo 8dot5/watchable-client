@@ -3,6 +3,7 @@ import { useHistory } from 'react-router'
 import Errors from './Errors'
 
 import '../styles/WatchablesAddEditPage.css'
+import Button from 'react-bootstrap/Button'
 
 function WatchablesEdit({ categories, errors, watchables, setWatchables, watchablesEdit }) {
 
@@ -58,6 +59,7 @@ function WatchablesEdit({ categories, errors, watchables, setWatchables, watchab
     return (
         <div className='watchables-add-edit-page'>
             <div className='page-title'>Edit a Watchable</div>
+            <br/>
             <div className='form-add'>
                 <form onSubmit={handleUpdateWatchable} >
                     <input onChange={onChange} type="text" value={state.title} name='title' placeholder='Enter watchable title' size='50'></input><br />
@@ -84,8 +86,12 @@ function WatchablesEdit({ categories, errors, watchables, setWatchables, watchab
                     <p>
                         <input onChange={onChange} type="text" name='trailer_url' value={state.trailer_url} placeholder='Enter watchable trailer url' size='50'></input>
                     </p>
-                        <textarea onChange={onChange} name='summary' value={state.overview} placeholder='Enter watchable summary' cols='50' rows='6'></textarea><br />
-                        <input type='submit' ></input>
+                        <textarea onChange={onChange} name='summary' value={state.overview} placeholder='Enter watchable summary' cols='49' rows='6'></textarea>
+                    <br/><br/>
+
+                    <a className='cancel-button' href='/watchables-list'>Cancel</a>
+                    <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
+
                     </form>
                     <Errors errors={errors} />
             </div>

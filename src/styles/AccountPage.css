@@ -11,3 +11,14 @@
     /* border: 5px solid #FFFF00; */
     padding: 10px;
 }
+
+.form-add {
+    position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-add {
+    width: 100%;
+}

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useHistory } from 'react-router'
 import Errors from './Errors'
 
+import Button from 'react-bootstrap/Button'
+
 import '../styles/WatchablesAddEditPage.css'
 
 function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
@@ -45,7 +47,7 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
     return (
         <div className='watchables-add-edit-page'>
             <div className='page-title'>Add a Watchable</div>
-            {/* <h5 className='page-title'>Add a Watchable</h5> */}
+            <br/>
             <div className='form-add'>
                 <form onSubmit={handleCreateWatchable}>
                     <input onChange={onChange} type="text" name='title' placeholder="The Watchable's title" size='50'></input><br/>
@@ -72,8 +74,11 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
                     <p>
                         <input onChange={onChange} type="text" name='trailer_url' placeholder="The Watchable's trailer url" size='50'></input>
                     </p>
-                    <textarea onChange={onChange} name='summary' placeholder='Enter watchable summary' cols='50' rows='3'></textarea><br/><br/>
-                    <input type='submit'></input>
+                    <textarea onChange={onChange} name='summary' placeholder='Enter watchable summary' cols='49' rows='3'></textarea><br/><br/>
+
+                    <a className='cancel-button' href='/watchables-list'>Cancel</a>
+                    <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
+
                 </form>
                 <Errors errors={errors} />
             </div>

@@ -1,5 +1,6 @@
 import { Switch, Route, useHistory, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import NavBar from './components/NavBar.js';
 import Signup from './components/Signup.js';
@@ -129,7 +130,7 @@ function App() {
 						<WatchablesEdit categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} watchablesEdit={watchablesEdit} />
 					</Route>
 					<Route exact path='/account'>
-						<Account />
+						<Account currentUser={currentUser} />
 					</Route>
 					<Route exact path='/'>
 						<Static />
