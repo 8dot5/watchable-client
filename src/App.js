@@ -118,7 +118,7 @@ function App() {
 						<WatchablesList currentUser={currentUser} userCategories={userCategories} watchables={watchables} setWatchables={setWatchables} setWatchablesEdit={setWatchablesEdit} favorites={favorites} setFavorites={setFavorites}/>
 					</Route>
 					<Route exact path='/add'>
-						<WatchablesAdd categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables}/>
+						<WatchablesAdd categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} />
 					</Route>
 					<Route exact path='/favorites'>
 						<WatchablesFave

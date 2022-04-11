@@ -6,15 +6,17 @@ import Button from 'react-bootstrap/Button'
 
 import '../styles/WatchablesAddEditPage.css'
 
-function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
+function WatchablesAdd({ categories, setWatchables, errors, watchables, watchable }) {
 
-    const [state, setState] = useState({})
+    const [title, setTitle] = useState('')
+    const [rating, setRating] = useState('')
+    const [category, setCategory] = useState('')
+    const [poster, setPoster] = useState('')
+    const [trailer, setTrailer] = useState('')
+    const [summary, setSummary] = useState('')
 
     const history = useHistory()
 
-    function onChange(e) {
-        setState({ ...state, [e.target.name]: e.target.value})
-    }
 
     function handleCreateWatchable(e) {
         e.preventDefault()
@@ -24,7 +26,7 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(state)
+            body: JSON.stringify(formData)
         })
         .then(res => res.json())
         .then(data => {
@@ -44,46 +46,60 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables }) {
         })
     }
 
+    // Handles default values
+    let formData = {
+        "title": title,
+        "rating": rating,
+        "category_id": category,
+        "poster_url": poster ? poster : 'https://m.psecn.photoshelter.com/img-get/I0000AJkdFdU3w8E/s/1000?1646725782',
+        "trailer_url": trailer ? trailer : 'https://youtu.be/dQw4w9WgXcQ',
+        "summary": summary
+    }
+
+    let form = (
+        <div className='form-add'>
+            <form onSubmit={handleCreateWatchable}>
+                <input onChange={(e) => setTitle(e.target.value)} type="text" name='title' placeholder="The Watchable's title" size='50'></input><br/>
+                <p><br />
+                    <select defaultValue='' onChange={(e) => setRating(e.target.value)} className='dropdown-add' name='rating'>
+                        <option value=''>Select a rating</option>
+                        <option value='G'>Rated: G</option>
+                        <option value='PG'>Rated: PG</option>
+                        <option value='PG-13'>Rated: PG-13</option>
+                        <option value='R'>Rated: R</option>
+                        <option value='Hide the Kids'>Hide the Kids</option>
+                        <option value='Hide the Spouse'>Hide the spouse</option>
+                    </select>
+                </p>
+                <p>
+                    <select defaultValue='' onChange={(e) => setCategory(e.target.value)} className='dropdown-add' name='category_id'>
+                        <option value=''>Select a category</option>
+                        {renderCategories()}
+                    </select>
+                </p>
+                <p>
+                    <input onChange={(e) => setPoster(e.target.value)} type='text' name='poster_url' placeholder="The Watchable's poster url" size='50'></input>
+                </p>
+                <p>
+                    <input onChange={(e) => setTrailer(e.target.value)} type="text" name='trailer_url' placeholder="The Watchable's trailer url" size='50'></input>
+                </p>
+                <textarea onChange={(e) => setSummary(e.target.value)} name='summary' placeholder='Enter Watchable summary' cols='49' rows='3'></textarea><br/><br/>
+
+                <a className='cancel-button' href='/watchables-list'>Cancel</a>
+                <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
+
+            </form>
+            <Errors errors={errors} />
+        </div>
+    )
+
     return (
         <div className='watchables-add-edit-page'>
             <div className='page-title'>Add a Watchable</div>
             <br/>
-            <div className='form-add'>
-                <form onSubmit={handleCreateWatchable}>
-                    <input onChange={onChange} type="text" name='title' placeholder="The Watchable's title" size='50'></input><br/>
-                    <p><br />
-                        <select defaultValue='' onChange={onChange} className='dropdown-add' name='rating'>
-                            <option value=''>Select a rating</option>
-                            <option value='G'>Rated: G</option>
-                            <option value='PG'>Rated: PG</option>
-                            <option value='PG-13'>Rated: PG-13</option>
-                            <option value='R'>Rated: R</option>
-                            <option value='Hide the Kids'>Hide the Kids</option>
-                            <option value='Hide the Spouse'>Hide the spouse</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select defaultValue='' onChange={onChange} className='dropdown-add' name='category_id'>
-                            <option value=''>Select a category</option>
-                            {renderCategories()}
-                        </select>
-                    </p>
-                    <p>
-                        <input onChange={onChange} type='text' name='poster_url' placeholder="The Watchable's poster url" size='50'></input>
-                    </p>
-                    <p>
-                        <input onChange={onChange} type="text" name='trailer_url' placeholder="The Watchable's trailer url" size='50'></input>
-                    </p>
-                    <textarea onChange={onChange} name='summary' placeholder='Enter watchable summary' cols='49' rows='3'></textarea><br/><br/>
-
-                    <a className='cancel-button' href='/watchables-list'>Cancel</a>
-                    <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
-
-                </form>
-                <Errors errors={errors} />
-            </div>
+            {form}
         </div>
     )
 }
 
-export default WatchablesAdd
+export default WatchablesAdd;
