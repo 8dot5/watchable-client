@@ -9,7 +9,7 @@ import '../styles/NavBar.css'
 //TODO add logo
 function NavBar({ currentUser }) {
   return (
-	<Navbar bg='dark' variant='dark' fixed='top' collapseOnSelect expand='lg'>
+	<Navbar bg='white' variant='light' fixed='top' collapseOnSelect expand='lg'>
 		<Container>
 			<Navbar.Brand href='/'>🍿 Watchables
 				{/* <img
