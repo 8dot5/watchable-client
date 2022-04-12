@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 
 import '../styles/WatchablesAddEditPage.css'
 
-function WatchablesAdd({ categories, setWatchables, errors, watchables, watchable }) {
+function WatchablesAdd({ currentUser, categories, setWatchables, errors, watchables, watchable }) {
 
     const [title, setTitle] = useState('')
     const [rating, setRating] = useState('')
@@ -104,11 +104,12 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables, watchabl
         })
     }
 
+    //TODO zero state
     return (
         <div className='watchables-add-edit-page'>
             <div className='page-title'>Add a Watchable</div>
             <br/>
-            {form}
+            {currentUser ? form : <>nothing to see here</>}
         </div>
     )
 }

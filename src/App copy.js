@@ -16,13 +16,39 @@ import Account from './components/Account.js';
 
 import './App.css';
 
+
+function PrivateRoute({ children, ...rest }) {
+	return (
+	  <Route
+		{...rest}
+		render={({ location }) =>
+		  localStorage.getItem("loggedin") ? (
+			children
+		  ) : (
+			<Redirect
+			  to={{
+				pathname: "/login",
+				state: { from: location }
+			  }}
+			/>
+		  )
+		}
+	  />
+	);
+}
+
 function App() {
+
 	const [errors, setErrors] = useState([])
+
 	const [currentUser, setCurrentUser] = useState(null)
+
 	const [watchables, setWatchables] = useState([])
 	const [watchablesEdit, setWatchablesEdit] = useState({})
+
 	const [categories, setCategories] = useState([])
 	const [userCategories, setUserCategories] = useState([])
+
 	const [favorites, setFavorites] = useState([])
 
 	const history = useHistory();
@@ -31,6 +57,7 @@ function App() {
 	function handleLogin(data) {
 		if(!data.errors) {
 			handleState(data)
+			localStorage.setItem("logged in", true) //added
 			setErrors([])
 		} else {
 			setErrors(data.errors)
@@ -43,6 +70,7 @@ function App() {
 		.then(res => res.json())
 		.then(data => {
 			handleState(data)
+
 			// fetching Categories from BE
 			fetchCategories()
 		})
@@ -78,7 +106,6 @@ function App() {
 		<BrowserRouter>
 			<div className='App'>
 				<NavBar currentUser={currentUser} />
-
 				<Switch>
 					<Route exact path='/signup'>
 						<Signup handleLogin={handleLogin} errors={errors} />
@@ -93,7 +120,7 @@ function App() {
 						<WatchablesList currentUser={currentUser} userCategories={userCategories} watchables={watchables} setWatchables={setWatchables} setWatchablesEdit={setWatchablesEdit} favorites={favorites} setFavorites={setFavorites}/>
 					</Route>
 					<Route exact path='/add'>
-						<WatchablesAdd currentUser={currentUser} categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} />
+						<WatchablesAdd categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} />
 					</Route>
 					<Route exact path='/favorites'>
 						<WatchablesFave
@@ -107,9 +134,9 @@ function App() {
 					<Route exact path='/account'>
 						<Account currentUser={currentUser} />
 					</Route>
-					<Route exact path='/'>
+					<PrivateRoute exact path='/'>
 						<Static />
-					</Route>
+					</PrivateRoute>
 				</Switch>
 			</div>
 		</BrowserRouter>

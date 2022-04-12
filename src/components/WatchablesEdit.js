@@ -5,7 +5,7 @@ import Errors from './Errors'
 import '../styles/WatchablesAddEditPage.css'
 import Button from 'react-bootstrap/Button'
 
-function WatchablesEdit({ categories, errors, watchables, setWatchables, watchablesEdit }) {
+function WatchablesEdit({ currentUser, categories, errors, watchables, setWatchables, watchablesEdit }) {
 
     const {id} = watchablesEdit
 
@@ -56,45 +56,52 @@ function WatchablesEdit({ categories, errors, watchables, setWatchables, watchab
         })
     }
 
+    // let itemsToDisplay =
+    let form =
+        <div className='form-add'>
+        <form onSubmit={handleUpdateWatchable} >
+            <input onChange={onChange} type="text" value={state.title} name='title' placeholder='Enter watchable title' size='50'></input><br />
+            <p><br />
+            <select defaultValue='' onChange={onChange} className='dropdown-add' name='rating'>
+                    <option value='' disabled >Select a rating</option>
+                    <option value='G'>Rated: G</option>
+                    <option value='PG'>Rated: PG</option>
+                    <option value='PG-13'>Rated: PG-13</option>
+                    <option value='R'>Rated: R</option>
+                    <option value='Hide the Kids'>Hide the Kids</option>
+                    <option value='Hide the Spouse'>Hide the spouse</option>
+                </select>
+            </p>
+            <p>
+                <select defaultValue='' onChange={onChange} className='dropdown-add' name="category_id">
+                <option value='' disabled >Select a category</option>
+                    {renderCategories()}
+                </select>
+            </p>
+            <p>
+                <input onChange={onChange} type="text" name='poster_url' value={state.poster_url} placeholder='Enter watchable poster url' size='50'></input>
+            </p>
+            <p>
+                <input onChange={onChange} type="text" name='trailer_url' value={state.trailer_url} placeholder='Enter watchable trailer url' size='50'></input>
+            </p>
+                <textarea onChange={onChange} name='summary' value={state.overview} placeholder='Enter watchable summary' cols='49' rows='6'></textarea>
+            <br/><br/>
+
+            <a className='cancel-button' href='/watchables-list'>Cancel</a>
+            <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
+
+            </form>
+            <Errors errors={errors} />
+        </div>
+
+
+
+    //TODO zero state
     return (
         <div className='watchables-add-edit-page'>
             <div className='page-title'>Edit a Watchable</div>
             <br/>
-            <div className='form-add'>
-                <form onSubmit={handleUpdateWatchable} >
-                    <input onChange={onChange} type="text" value={state.title} name='title' placeholder='Enter watchable title' size='50'></input><br />
-                    <p><br />
-                    <select defaultValue='' onChange={onChange} className='dropdown-add' name='rating'>
-                            <option value='' disabled >Select a rating</option>
-                            <option value='G'>Rated: G</option>
-                            <option value='PG'>Rated: PG</option>
-                            <option value='PG-13'>Rated: PG-13</option>
-                            <option value='R'>Rated: R</option>
-                            <option value='Hide the Kids'>Hide the Kids</option>
-                            <option value='Hide the Spouse'>Hide the spouse</option>
-                        </select>
-                    </p>
-                    <p>
-                        <select defaultValue='' onChange={onChange} className='dropdown-add' name="category_id">
-                        <option value='' disabled >Select a category</option>
-                            {renderCategories()}
-                        </select>
-                    </p>
-                    <p>
-                        <input onChange={onChange} type="text" name='poster_url' value={state.poster_url} placeholder='Enter watchable poster url' size='50'></input>
-                    </p>
-                    <p>
-                        <input onChange={onChange} type="text" name='trailer_url' value={state.trailer_url} placeholder='Enter watchable trailer url' size='50'></input>
-                    </p>
-                        <textarea onChange={onChange} name='summary' value={state.overview} placeholder='Enter watchable summary' cols='49' rows='6'></textarea>
-                    <br/><br/>
-
-                    <a className='cancel-button' href='/watchables-list'>Cancel</a>
-                    <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
-
-                    </form>
-                    <Errors errors={errors} />
-            </div>
+            {currentUser ? form : <>nothing to see here</>}
         </div>
     )
 }
