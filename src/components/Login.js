@@ -55,13 +55,13 @@ function Login({ handleLogin, errors }) {
                     </label>
                     <br/>
                     <br/>
-                    <Button disabled={!username || !password} variant='primary' className='login-submit-button' type='submit'>Submit</Button>
+                    <Button disabled={!username || !password} variant='danger' className='login-submit-button' type='submit'>Submit</Button>
 
                 </fieldset>
             </form>
             <br/>
             <hr></hr>
-            <p><a href='/signup'>Sign up </a> and join the Watchables Pack! </p>
+            <p>New to Watchables? <a href='/signup'>Sign up now.</a></p>
             <Errors errors={errors} />
             </div>
         </div>

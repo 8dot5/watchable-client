@@ -20,10 +20,10 @@ function Signup({ handleLogin, errors }) {
             case (formData.username.length <3):
                 alert('Need a longer username');
                 break;
-            case (formData.email.length <6):
+            case (formData.email.length <3):
                 alert('Need a longer email')
                 break;
-            case (formData.password.length <6):
+            case (formData.password.length <3):
                 alert('Enter a longer password')
                 break;
             //TODO fix this
@@ -86,7 +86,7 @@ function Signup({ handleLogin, errors }) {
                 <br/>
                 <br/>
 
-                <Button disabled={!username || !email || !password || !passwordConfirmation} variant='primary' className='login-submit-button' type='submit'>Submit</Button>
+                <Button disabled={!username || !email || !password || !passwordConfirmation} variant='danger' className='login-submit-button' type='submit'>Submit</Button>
             </fieldset>
         </form>
     )
