@@ -19,9 +19,16 @@ function WatchablesList({ currentUser, userCategories, watchables, setWatchables
 
     return (
         <div className='watchables-page'>
-            <div className='page-title'>Watchables</div>
+            <div className='page-title'>{
+                currentUser
+                ?
+                `Welcome back, ${currentUser.username}! You have ${watchables.length} Watchables.`
+                :
+                'Nothing to see here. 😢'
+            }
+            </div>
             <div className='watchables-grid'>
-                { currentUser ? renderCard() : renderZero() }
+                {renderCard()}
             </div>
         </div>
     )

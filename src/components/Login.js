@@ -2,15 +2,15 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Errors from './Errors';
 
+import Button from 'react-bootstrap/Button'
 import '../styles/LoginPage.css'
 
 function Login({ handleLogin, errors }) {
     const [state, setState] = useState({});
     const history = useHistory();
 
-    function onChange(e) {
-        setState({ ...state, [e.target.name]: e.target.value });
-    };
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     function handleSubmit(e) {
     e.preventDefault();
@@ -21,7 +21,7 @@ function Login({ handleLogin, errors }) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(state)
+        body: JSON.stringify(formData)
     })
         .then((res) => res.json())
         // then, doing FE things
@@ -32,6 +32,11 @@ function Login({ handleLogin, errors }) {
         }, 1000);
     };
 
+    let formData = {
+        'username': username,
+        'password': password
+    }
+
     return (
         <div className='login-page'>
             <div className='page-title'>
@@ -41,19 +46,21 @@ function Login({ handleLogin, errors }) {
                     <br/>
                     <label>Username
                     <br/>
-                        <input onChange={onChange} className='input' id='username' type='text' name='username'/></label>
+                        <input onChange={(e) => setUsername(e.target.value)} className='input' id='username' type='text' name='username'/></label>
                     <br/>
                     <label>Password
                     <br/>
-                        <input onChange={onChange} className='input' type='password' name='password'/>
+                        <input onChange={(e) => setPassword(e.target.value)} className='input' type='password' name='password'/>
                     </label>
                     <br/>
                     <br/>
-                    <input id='submit' type='submit'></input>
+                    <Button disabled={!username || !password} variant='primary' className='login-submit-button' type='submit'>Submit</Button>
+
                 </fieldset>
             </form>
             <br/>
-            <p>Join the Watchables Pack! <a href='/signup'>Sign up</a></p>
+            <hr></hr>
+            <p><a href='/signup'>Sign up </a> and join the Watchables Pack! </p>
             <Errors errors={errors} />
             </div>
         </div>

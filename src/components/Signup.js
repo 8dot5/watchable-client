@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import Errors from './Errors'
 
+import Button from 'react-bootstrap/Button'
 import '../styles/SignupPage.css'
 
 function Signup({ handleLogin, errors }) {
@@ -83,7 +84,8 @@ function Signup({ handleLogin, errors }) {
                 </label>
                 <br/>
                 <br/>
-                <input disabled={!username || !email || !password || !passwordConfirmation} id='submit' type='submit'></input>
+
+                <Button disabled={!username || !email || !password || !passwordConfirmation} variant='primary' className='login-submit-button' type='submit'>Submit</Button>
             </fieldset>
         </form>
     )
