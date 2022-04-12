@@ -87,7 +87,7 @@ function WatchablesAdd({ currentUser, categories, setWatchables, errors, watchab
                 <textarea onChange={(e) => setSummary(e.target.value)} name='summary' placeholder='Enter Watchable summary' cols='49' rows='3'></textarea><br/><br/>
 
                 <a className='cancel-button' href='/watchables-list'>Cancel</a>
-                <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
+                <Button variant='danger' className='submit-button' type='submit'>Submit</Button>
 
             </form>
             <Errors errors={errors} />

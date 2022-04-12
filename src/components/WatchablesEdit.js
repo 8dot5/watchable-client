@@ -95,14 +95,11 @@ function WatchablesEdit({ currentUser, categories, errors, watchables, setWatcha
         </div>
     )
 
-
-
-    //TODO zero state
     return (
         <div className='watchables-add-edit-page'>
             <div className='page-title'>Edit a Watchable</div>
             <br/>
-            {currentUser ? form : <>nothing to see here</>}
+            {currentUser ? form : null}
         </div>
     )
 }
