@@ -61,6 +61,7 @@ function Signup({ handleLogin, errors }) {
             <fieldset>
                 <legend>Sign up for a new Watchables Account!</legend>
                 <br/>
+                <br/>
                 <label>Username
                     <br/>
                     <input onChange={(e) => setUsername(e.target.value)} className='input' id='username' type='text' name='username'/>

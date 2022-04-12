@@ -42,7 +42,8 @@ function Login({ handleLogin, errors }) {
             <div className='page-title'>
             <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>Log into your Watchables Account!</legend>
+                    <legend>Log in to your Watchables Account!</legend>
+                    <br/>
                     <br/>
                     <label>Username
                     <br/>
