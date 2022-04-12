@@ -1,6 +1,8 @@
-
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useHistory } from 'react-router'
+
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroupItem from 'react-bootstrap/ListGroupItem'
 
 import '../styles/Cards.css'
 
@@ -77,13 +79,13 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
     return (
         <div className='card-back'>
-            <Card style={{ width: '14rem' }}>
-                <Card.Img variant="top"/>
+            <Card style={{ width: '14rem', height: '30vh'}}>
+                <Card.Img variant="top" />
                 <Card.Body>
-                    <Card.Title>🍿 {truncate(watchable.title, 10)}</Card.Title>
+                    <Card.Title>🍿 {truncate(watchable.title, 20)}</Card.Title>
 
                     <Card.Text>
-                        {truncate(watchable.summary, 24)}
+                        {truncate(watchable.summary, 100)}
                     </Card.Text>
                     <Card.Text>Rating: {watchable.rating}</Card.Text>
                 </Card.Body>
@@ -130,4 +132,4 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
     )
 }
 
-export default CardBack
+export default CardBack;
