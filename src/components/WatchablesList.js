@@ -10,13 +10,6 @@ function WatchablesList({ currentUser, userCategories, watchables, setWatchables
         })
     }
 
-    //TODO
-    function renderZero() {
-        return (
-            <p>No Watchables</p>
-        )
-    }
-
     return (
         <div className='watchables-page'>
             <div className='page-title'>{

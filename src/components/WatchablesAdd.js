@@ -104,12 +104,18 @@ function WatchablesAdd({ currentUser, categories, setWatchables, errors, watchab
         })
     }
 
-    //TODO zero state
     return (
         <div className='watchables-add-edit-page'>
-            <div className='page-title'>Add a Watchable</div>
+            <div className='page-title'>{
+                currentUser
+                ?
+                'Add a new Watchable.'
+                :
+                'Log in to view your Watchables.'
+            }
+            </div>
             <br/>
-            {currentUser ? form : <>nothing to see here</>}
+            {currentUser ? form : null}
         </div>
     )
 }
