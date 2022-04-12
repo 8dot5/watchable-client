@@ -2,7 +2,7 @@ import CardContainerFave from './CardContainerFave'
 import '../App.css'
 import '../styles/FavoritesPage.css'
 
-function WatchablesFave({ favorites, watchables }) {
+function WatchablesFave({ currentUser, favorites, watchables }) {
 
     function renderCard() {
         return favorites.map((watchable) => {
@@ -12,7 +12,14 @@ function WatchablesFave({ favorites, watchables }) {
 
     return (
         <div className='favorites-page'>
-            <div className='page-title'>Faves</div>
+            <div className='page-title'>{
+                currentUser
+                ?
+                `You have ${favorites.length} Faves.`
+                :
+                'Log in to see your Faves.'
+            }
+            </div>
             <div className='watchables-grid'>
                 {renderCard()}
             </div>
@@ -21,4 +28,3 @@ function WatchablesFave({ favorites, watchables }) {
 }
 
 export default WatchablesFave;
-

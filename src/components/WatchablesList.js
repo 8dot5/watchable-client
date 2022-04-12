@@ -17,7 +17,7 @@ function WatchablesList({ currentUser, userCategories, watchables, setWatchables
                 ?
                 `Welcome back, ${currentUser.username}! You have ${watchables.length} Watchables.`
                 :
-                'Nothing to see here. 😢'
+                'Log in to see your List.'
             }
             </div>
             <div className='watchables-grid'>

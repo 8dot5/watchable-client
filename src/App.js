@@ -97,7 +97,7 @@ function App() {
 					</Route>
 					<Route exact path='/favorites'>
 						<WatchablesFave
-							favorites={favorites} watchables={watchables}
+							currentUser={currentUser} favorites={favorites} watchables={watchables}
 						/>
 					</Route>
 

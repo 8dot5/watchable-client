@@ -111,7 +111,7 @@ function WatchablesAdd({ currentUser, categories, setWatchables, errors, watchab
                 ?
                 'Add a new Watchable.'
                 :
-                'Log in to view your Watchables.'
+                'Log in to add a new Watchable.'
             }
             </div>
             <br/>
