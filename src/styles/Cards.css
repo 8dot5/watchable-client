@@ -9,10 +9,9 @@
     max-height: 100px;
     width: 100%; */
 
-    background-color: #111;
+    background-color: #000;
     overflow: hidden;
 
-    overflow: hidden;
     /* transition: transform 450ms; */
 }
 
@@ -23,7 +22,7 @@
 }
 
 .card-poster {
-    background-color: #111;
+    background-color: #000;
     padding: 20px;
     object-fit: contain;
     overflow: hidden;
@@ -36,11 +35,6 @@
 .card-back {
     overflow-x: hidden;
     /* background-color: blue; */
-}
-
-/* Bootstrap list-group */
-.list-group-flush {
-
 }
 
 
