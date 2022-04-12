@@ -83,7 +83,7 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                     <Card.Title>🍿 {truncate(watchable.title, 10)}</Card.Title>
 
                     <Card.Text>
-                        {truncate(watchable.summary, 120)}
+                        {truncate(watchable.summary, 24)}
                     </Card.Text>
                     <Card.Text>Rating: {watchable.rating}</Card.Text>
                 </Card.Body>
