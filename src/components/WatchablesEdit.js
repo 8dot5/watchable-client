@@ -56,8 +56,8 @@ function WatchablesEdit({ currentUser, categories, errors, watchables, setWatcha
         })
     }
 
-    // let itemsToDisplay =
-    let form =
+
+    let form = (
         <div className='form-add'>
         <form onSubmit={handleUpdateWatchable} >
             <input onChange={onChange} type="text" value={state.title} name='title' placeholder='Enter watchable title' size='50'></input><br />
@@ -88,11 +88,12 @@ function WatchablesEdit({ currentUser, categories, errors, watchables, setWatcha
             <br/><br/>
 
             <a className='cancel-button' href='/watchables-list'>Cancel</a>
-            <Button variant='primary' className='submit-button' type='submit'>Submit</Button>
+            <Button variant='danger' className='submit-button' type='submit'>Submit</Button>
 
             </form>
             <Errors errors={errors} />
         </div>
+    )
 
 
 
