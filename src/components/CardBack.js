@@ -28,6 +28,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                     return watchable.id !== id
                 })
             )
+            setTimeout(() => {
+                alert('Deleted a Watchable!')
+            }, 100)
         })
     }
 
@@ -46,6 +49,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
             // console.log(data, 'fave it')
             if(!data.errors) {
                 setFavorites([...favorites, data])
+                setTimeout(() => {
+                    alert('Faved a Watchable!')
+                }, 100)
             }
         })
     }
@@ -69,6 +75,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                         return favorite.id !== id
                     })
                 )
+                setTimeout(() => {
+                    alert('Unfaved a Watchable!')
+                }, 100)
             }
         })
     }

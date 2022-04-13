@@ -45,6 +45,7 @@ function Signup({ handleLogin, errors }) {
         .then(data => {
             // console.log(data, 'signup data')
             handleLogin(data)
+            // alert('Signed up!')
             history.push('/watchables-list')
         })}
     };
