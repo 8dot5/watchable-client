@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import Spinner from 'react-bootstrap/Spinner'
 import '../styles/LogoutPage.css'
 
-
 function Logout({ setCurrentUser }) {
 
     const history = useHistory();
