@@ -46,6 +46,9 @@ function NavBar({ currentUser }) {
 
 				//TODO functional account page doesn't exist thus link is disabled
 				<Nav>
+					<Navbar.Text>
+						{currentUser ? `Hi, ${currentUser.username}` : <a href='/login'>Login</a>}
+					</Navbar.Text>
 					{
 						currentUser
 						?
@@ -59,7 +62,7 @@ function NavBar({ currentUser }) {
 						null
 					}
 					<Navbar.Text>
-						{currentUser ? `Hi, ${currentUser.username}` : <a href='/login'>Login</a>}
+						{/* {currentUser ? `Hi, ${currentUser.username}` : <a href='/login'>Login</a>} */}
 					</Navbar.Text>
 				</Nav>
 
