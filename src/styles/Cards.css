@@ -11,8 +11,10 @@
 
 /* TODO need a fave card container where there is no onhover behavior */
 .card-container:hover {
-    /* transform: scale(0.9); */
     cursor: pointer;
+    transform: scale(0.98);
+    /* opacity: 0.9; */
+
 }
 
 .card-poster {
