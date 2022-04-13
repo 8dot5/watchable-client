@@ -104,9 +104,9 @@ function App() {
 					<Route exact path='/edit'>
 						<WatchablesEdit currentUser={currentUser} categories={categories} setWatchables={setWatchables} errors={errors} watchables={watchables} watchablesEdit={watchablesEdit} />
 					</Route>
-					<Route exact path='/account'>
+					{/* <Route exact path='/account'>
 						<Account currentUser={currentUser} />
-					</Route>
+					</Route> */}
 					<Route exact path='/'>
 						<Static />
 					</Route>

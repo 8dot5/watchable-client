@@ -51,7 +51,7 @@ function NavBar({ currentUser }) {
 						?
 						<NavDropdown>
 							<NavDropdown.Item href='/add'>Add a Watchable</NavDropdown.Item>
-							<NavDropdown.Item href='/account'>My account</NavDropdown.Item>
+							{/* <NavDropdown.Item href='/account'>My account</NavDropdown.Item> */}
 							<NavDropdown.Divider/>
 							<NavDropdown.Item href='/logout'>Logout</NavDropdown.Item>
 						</NavDropdown>
