@@ -6,22 +6,13 @@
     text-align: center;
     position: center;
     font-size: 1.5em;
-    /* margin: auto; */
     width: 100%;
     height: 100%;
-    /* border: 5px solid #FFFF00; */
-    /* padding: 10px; */
-    /* background-size: 'auto'; */
 }
 
-
 .spinner {
-    /* position: flex;
-    display: block; */
     left: 50%;
     top: 50%;
-
-
 }
 
 .loading {
