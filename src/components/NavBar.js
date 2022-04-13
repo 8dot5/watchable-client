@@ -61,9 +61,6 @@ function NavBar({ currentUser }) {
 						:
 						null
 					}
-					<Navbar.Text>
-						{/* {currentUser ? `Hi, ${currentUser.username}` : <a href='/login'>Login</a>} */}
-					</Navbar.Text>
 				</Nav>
 
 			</Navbar.Collapse>
