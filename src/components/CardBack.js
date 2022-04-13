@@ -109,9 +109,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                     {
                         watchable.favorite
                         ?
-                        <Card.Link onClick={handleRemoveFavorite} href="#">Remove</Card.Link>
+                        <Card.Link onClick={handleRemoveFavorite} href="#">Unfave it</Card.Link>
                         :
-                        <Card.Link onClick={handleFavorite} href="#">Add</Card.Link>
+                        <Card.Link onClick={handleFavorite} href="#">Fave it</Card.Link>
                     }
                     <br/>
                     {
