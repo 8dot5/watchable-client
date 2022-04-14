@@ -61,7 +61,7 @@ function Login({ handleLogin, errors }) {
             </form>
             <br/>
             <hr></hr>
-            <p>New to Watchables? <a href='/signup'>Sign up now.</a></p>
+            <p style={{fontSize: '.75em'}}>New to Watchables? <a href='/signup'>Sign up now.</a></p>
             <Errors errors={errors} />
             </div>
         </div>
