@@ -45,11 +45,11 @@ function Login({ handleLogin, errors }) {
                     <legend>Log in to your Watchables Account!</legend>
                     <br/>
                     <br/>
-                    <label>Username
+                    <label style={{fontSize: '.75em'}}>Username
                     <br/>
                         <input onChange={(e) => setUsername(e.target.value)} className='input' id='username' type='text' name='username'/></label>
                     <br/>
-                    <label>Password
+                    <label style={{fontSize: '.75em'}}>Password
                     <br/>
                         <input onChange={(e) => setPassword(e.target.value)} className='input' type='password' name='password'/>
                     </label>
