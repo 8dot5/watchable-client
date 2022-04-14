@@ -10,12 +10,37 @@
     width: 50%;
     /* border: 5px solid #FFFF00; */
     padding: 10px;
-  }
+}
+
+.logout-grid {
+    font-family: arial;
+    font-size: 24px;
+    margin: 25px;
+    width: 350px;
+    height: 200px;
+    outline: dashed 1px black;
+    position: relative;
+}
 
 
 .spinner {
     position: fixed;
-    left: 45%;
+    top: 20%;
+    left: 50%;
 }
+
+.child {
+    text-align: center;
+    text-justify: center;
+    font-size: 1.0em;
+    width: 700px;
+    height: 50px;
+    padding: 100px;
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 

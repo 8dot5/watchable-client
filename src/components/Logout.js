@@ -25,16 +25,19 @@ function Logout({ setCurrentUser }) {
 
     return (
         <div className='logout-page'>
-            {/* <div className='page-title'> */}
-            <div className='spinner'>
-                <br/>
-                <br/>
-                <Spinner animation='border' role='status'>
-                    <span className='visually-hidden'></span>
-                </Spinner>
-                <h2>Logging you out</h2>
+            {/* <div className='page-title'>
+            </div> */}
+            <div className='logout-grid'>
+                <div className='spinner'>
+                    <br/>
+                    <br/>
+                    <Spinner animation='border' role='status'>
+                        <span className='visually-hidden'></span>
+                    </Spinner>
+                    <p className='child'>Logging you out...</p>
+                </div>
             </div>
-            {/* </div> */}
+
         </div>
     );
 };
