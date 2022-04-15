@@ -1,5 +1,4 @@
 import Card from 'react-bootstrap/Card'
-
 import '../styles/Cards.css'
 
 function CardFront({watchable}) {

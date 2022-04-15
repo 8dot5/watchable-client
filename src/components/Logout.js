@@ -4,11 +4,10 @@ import Spinner from 'react-bootstrap/Spinner'
 import '../styles/LogoutPage.css'
 
 function Logout({ setCurrentUser }) {
-
     const history = useHistory();
 
     useEffect(() => {
-        fetch('/logout', {
+        fetch('https://watchables-api.herokuapp.com/logout', {
             method: 'DELETE'
         })
         .then(() => {

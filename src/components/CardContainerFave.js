@@ -1,5 +1,4 @@
 import CardFrontFave from './CardFrontFave'
-
 import '../styles/Cards.css'
 
 function CardContainerFave({ watchable }) {

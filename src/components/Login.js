@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import Errors from './Errors';
-
 import Button from 'react-bootstrap/Button'
 import '../styles/LoginPage.css'
+import Errors from './Errors';
 
 function Login({ handleLogin, errors }) {
-    const [state, setState] = useState({});
     const history = useHistory();
 
     const [username, setUsername] = useState('')
@@ -16,7 +14,7 @@ function Login({ handleLogin, errors }) {
     e.preventDefault();
 
     // calling the BE
-    fetch('/login', {
+    fetch('https://watchables-api.herokuapp.com/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

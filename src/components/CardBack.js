@@ -1,15 +1,11 @@
 import { useHistory } from 'react-router'
-
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ListGroupItem from 'react-bootstrap/ListGroupItem'
-
 import '../styles/Cards.css'
 
 function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setFavorites, favorites, userCategories }) {
-
     const {id} = watchable
-
     const history = useHistory()
 
     function handleClick() {
@@ -18,7 +14,7 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
     }
 
     function handleDeleteWatchable() {
-        fetch(`/watchables/${id}`, {
+        fetch(`https://watchables-api.herokuapp.com/watchables/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -36,7 +32,7 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
     function handleFavorite(e) {
         e.preventDefault()
-        fetch(`/watchables/${id}`, {
+        fetch(`https://watchables-api.herokuapp.com/watchables/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +54,7 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
     function handleRemoveFavorite(e) {
         e.preventDefault()
-        fetch(`/watchables/${id}`, {
+        fetch(`https://watchables-api.herokuapp.com/watchables/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +88,6 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                 <Card.Img variant="top" />
                 <Card.Body>
                     <Card.Title>{truncate(watchable.title, 20)}</Card.Title>
-
                     <Card.Text>
                         {truncate(watchable.summary, 100)}
                     </Card.Text>
@@ -102,7 +97,6 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                 <ListGroup>
                     <ListGroupItem><Card.Link href={watchable.trailer_url} target="_blank">Trailer</Card.Link></ListGroupItem>
                 </ListGroup>
-
                 <Card.Body>
                     {
                         watchable.favorite

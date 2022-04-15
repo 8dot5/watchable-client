@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import CardFront from './CardFront'
 import CardBack from './CardBack'
-
 import '../styles/Cards.css'
 
 function CardContainer({ watchable, setWatchablesEdit, watchables, setWatchables, favorites, setFavorites, userCategories}) {

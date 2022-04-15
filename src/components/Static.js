@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
 import '../styles/StaticPage.css'
-
 import Spinner from 'react-bootstrap/Spinner'
 
 function Static(){

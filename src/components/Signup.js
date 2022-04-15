@@ -33,7 +33,7 @@ function Signup({ handleLogin, errors }) {
             default:
 
         // calling the BE
-        fetch('/users', {
+        fetch('https://watchables-api.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

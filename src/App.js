@@ -1,6 +1,5 @@
-import { Switch, Route, useHistory, BrowserRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, useHistory, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar.js';
 import Signup from './components/Signup.js';
@@ -10,10 +9,8 @@ import WatchablesList from './components/WatchablesList.js';
 import WatchablesAdd from './components/WatchablesAdd.js';
 import WatchablesEdit from './components/WatchablesEdit.js';
 import WatchablesFave from './components/WatchablesFave.js';
-
 import Static from './components/Static.js';
 import Account from './components/Account.js';
-
 import './App.css';
 
 function App() {
@@ -24,7 +21,6 @@ function App() {
 	const [categories, setCategories] = useState([])
 	const [userCategories, setUserCategories] = useState([])
 	const [favorites, setFavorites] = useState([])
-
 	const history = useHistory();
 
 	// Interstitial; helper points to handleState
@@ -39,7 +35,7 @@ function App() {
 
 	// Checking the session
 	useEffect(() => {
-		fetch('/me')
+		fetch('https://watchables-api.herokuapp.com/me')
 		.then(res => res.json())
 		.then(data => {
 			handleState(data)
@@ -63,7 +59,7 @@ function App() {
 	}
 
 	function fetchCategories() {
-		fetch('/categories')
+		fetch('https://watchables-api.herokuapp.com/categories')
 		.then(res => res.json())
 		.then(data => setCategories(data))
 	}

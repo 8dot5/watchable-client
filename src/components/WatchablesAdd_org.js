@@ -1,15 +1,11 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import Errors from './Errors'
-
 import Button from 'react-bootstrap/Button'
-
 import '../styles/WatchablesAddEditPage.css'
 
 function WatchablesAdd({ categories, setWatchables, errors, watchables, watchable }) {
-
     const [state, setState] = useState({})
-
     const history = useHistory()
 
     function onChange(e) {
@@ -18,7 +14,7 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables, watchabl
 
     function handleCreateWatchable(e) {
         e.preventDefault()
-        fetch('/watchables', {
+        fetch('https://watchables-api.herokuapp.com/watchables', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
