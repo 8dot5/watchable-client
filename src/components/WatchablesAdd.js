@@ -44,6 +44,7 @@ function WatchablesAdd({ currentUser, categories, setWatchables, errors, watchab
             // console.log(data)
             setWatchables([data, ...watchables])
             history.push('/watchables-list')
+            // alert('Added a Watchable!')
         })
     }}
 

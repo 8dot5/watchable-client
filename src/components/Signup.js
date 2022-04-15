@@ -45,6 +45,7 @@ function Signup({ handleLogin, errors }) {
         .then(data => {
             // console.log(data, 'signup data')
             handleLogin(data)
+            // alert('Signed up!')
             history.push('/watchables-list')
         })}
     };
@@ -62,24 +63,24 @@ function Signup({ handleLogin, errors }) {
                 <legend>Sign up for a new Watchables Account!</legend>
                 <br/>
                 <br/>
-                <label>Username
+                <label style={{fontSize: '.75em'}}>Username
                     <br/>
                     <input onChange={(e) => setUsername(e.target.value)} className='input' id='username' type='text' name='username'/>
                 </label>
                 <br/>
                 <br/>
-                <label>Email
+                <label style={{fontSize: '.75em'}}>Email
                 <br/>
                     <input onChange={(e) => setEmail(e.target.value)}  className='input' type='text' name='email'/>
                 </label>
                 <br/>
-                <label>Password
+                <label style={{fontSize: '.75em'}}>Password
                 <br/>
                     <input onChange={(e) => setPassword(e.target.value)}  className='input' type='password' name='password'/>
                 </label>
 
                 <br/>
-                <label>Confirm password
+                <label style={{fontSize: '.75em'}}>Confirm password
                 <br/>
                     <input onChange={(e) => setPasswordConfirmation(e.target.value)}  className='input' type='password' name='password_confirmation'/>
                 </label>

@@ -2,23 +2,16 @@
     padding-top: 100px;
 }
 
-
 .card-container {
-
-    /* object-fit: contain;
-    max-height: 100px;
-    width: 100%; */
-
     background-color: #000;
     overflow: hidden;
-
-    /* transition: transform 450ms; */
 }
 
+/* TODO need a fave card container where there is no onhover behavior */
 .card-container:hover {
-    /* transform: scale(0.9); */
     cursor: pointer;
-
+    transform: scale(0.98);
+    /* opacity: 0.9; */
 }
 
 .card-poster {
@@ -34,7 +27,5 @@
 
 .card-back {
     overflow-x: hidden;
-    /* background-color: blue; */
+    color: rgb(124, 124, 124);
 }
-
-

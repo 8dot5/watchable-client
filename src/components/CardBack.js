@@ -28,6 +28,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                     return watchable.id !== id
                 })
             )
+            setTimeout(() => {
+                alert('Deleted a Watchable!')
+            }, 100)
         })
     }
 
@@ -46,6 +49,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
             // console.log(data, 'fave it')
             if(!data.errors) {
                 setFavorites([...favorites, data])
+                setTimeout(() => {
+                    alert('Faved a Watchable!')
+                }, 100)
             }
         })
     }
@@ -69,6 +75,9 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                         return favorite.id !== id
                     })
                 )
+                setTimeout(() => {
+                    alert('Unfaved a Watchable!')
+                }, 100)
             }
         })
     }
@@ -79,39 +88,28 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
     return (
         <div className='card-back'>
-            <Card style={{ width: '14rem', height: '30vh'}}>
+            <Card style={{ width: '15rem', height: '30vh'}}>
                 <Card.Img variant="top" />
                 <Card.Body>
-                    <Card.Title>🍿 {truncate(watchable.title, 20)}</Card.Title>
+                    <Card.Title>{truncate(watchable.title, 20)}</Card.Title>
 
                     <Card.Text>
                         {truncate(watchable.summary, 100)}
                     </Card.Text>
-                    <Card.Text>Rating: {watchable.rating}</Card.Text>
+                    <Card.Text style={{fontSize: 12}}>Rating: {watchable.rating}</Card.Text>
                 </Card.Body>
 
                 <ListGroup>
-                    {/* <ListGroupItem>Rating: {watchable.rating}</ListGroupItem> */}
-
-
                     <ListGroupItem><Card.Link href={watchable.trailer_url} target="_blank">Trailer</Card.Link></ListGroupItem>
-
-                    {/* {
-                        watchable.favorite
-                        ?
-                        <ListGroupItem><Card.Link onClick={handleRemoveFavorite} href="#">Remove Favorite</Card.Link></ListGroupItem>
-                        :
-                        <ListGroupItem><Card.Link onClick={handleFavorite} href="#">Add to Favorites</Card.Link></ListGroupItem>
-                    } */}
                 </ListGroup>
 
                 <Card.Body>
                     {
                         watchable.favorite
                         ?
-                        <Card.Link onClick={handleRemoveFavorite} href="#">Remove</Card.Link>
+                        <Card.Link onClick={handleRemoveFavorite} href="#">Unfave it</Card.Link>
                         :
-                        <Card.Link onClick={handleFavorite} href="#">Add</Card.Link>
+                        <Card.Link onClick={handleFavorite} href="#">Fave it</Card.Link>
                     }
                     <br/>
                     {
@@ -125,7 +123,7 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
                         <Card.Link onClick={handleDeleteWatchable} href='#'>Delete</Card.Link>
                         </>
                     }
-                     <Card.Text style={{fontSize: 11}}>Updated: {truncate(watchable.updated_at, 11)}</Card.Text>
+                     <Card.Text style={{fontSize: 10}}>Updated: {truncate(watchable.updated_at, 11)}</Card.Text>
                 </Card.Body>
             </Card>
         </div>
