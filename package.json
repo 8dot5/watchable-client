@@ -12,9 +12,8 @@
     "react-bootstrap": "^1.6.1"
   },
   "scripts": {
-    "build": "react-scripts start",
-    "clean": "rm -rf public",
-    "deploy": "cp -a client/build/. public/"
+    "start": "PORT=4000 react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
