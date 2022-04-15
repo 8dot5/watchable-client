@@ -14,7 +14,8 @@ function WatchablesAdd({ categories, setWatchables, errors, watchables, watchabl
 
     function handleCreateWatchable(e) {
         e.preventDefault()
-        fetch('https://watchables-api.herokuapp.com/watchables', {
+        // fetch('https://watchables-api.herokuapp.com/watchables', {
+        fetch('/watchables', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
