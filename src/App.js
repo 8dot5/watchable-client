@@ -35,8 +35,8 @@ function App() {
 
 	// Checking the session
 	useEffect(() => {
-		// fetch('https://watchables-api.herokuapp.com/me')
-		fetch('/me')
+		fetch('https://watchables-api.herokuapp.com/me')
+		// fetch('/me')
 		.then(res => res.json())
 		.then(data => {
 			handleState(data)
@@ -60,8 +60,8 @@ function App() {
 	}
 
 	function fetchCategories() {
-		// fetch('https://watchables-api.herokuapp.com/categories')
-		fetch('/categories')
+		fetch('https://watchables-api.herokuapp.com/categories')
+		// fetch('/categories')
 		.then(res => res.json())
 		.then(data => setCategories(data))
 	}

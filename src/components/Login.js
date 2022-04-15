@@ -14,8 +14,8 @@ function Login({ handleLogin, errors }) {
     e.preventDefault();
 
     // calling the BE
-    // fetch('https://watchables-api.herokuapp.com/login', {
-    fetch('/login', {
+    fetch('https://watchables-api.herokuapp.com/login', {
+    // fetch('/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

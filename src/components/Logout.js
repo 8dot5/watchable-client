@@ -7,8 +7,8 @@ function Logout({ setCurrentUser }) {
     const history = useHistory();
 
     useEffect(() => {
-        // fetch('https://watchables-api.herokuapp.com/logout', {
-        fetch('/logout', {
+        fetch('https://watchables-api.herokuapp.com/logout', {
+        // fetch('/logout', {
             method: 'DELETE'
         })
         .then(() => {

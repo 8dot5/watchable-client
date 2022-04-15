@@ -27,8 +27,8 @@ function WatchablesAdd({ currentUser, categories, setWatchables, errors, watchab
                 break;
             default:
 
-        // fetch('https://watchables-api.herokuapp.com/watchables', {
-        fetch('/watchables', {
+        fetch('https://watchables-api.herokuapp.com/watchables', {
+        // fetch('/watchables', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
