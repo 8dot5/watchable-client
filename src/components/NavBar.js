@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import '../styles/NavBar.css'
+import { Link } from 'react-router-dom';
 
 function NavBar({ currentUser }) {
   return (
@@ -21,9 +22,9 @@ function NavBar({ currentUser }) {
 			<Navbar.Toggle aria-controls='responsive-navbar-nav' />
 			<Navbar.Collapse id='responsive-navbar-nav'>
 				<Nav className='me-auto'>
-					<Nav.Link href='/watchables-list'>Watchables List</Nav.Link>
-					<Nav.Link href='/add'>Add a Watchable</Nav.Link>
-					<Nav.Link href='/favorites'>View Favorites</Nav.Link>
+					<Nav.Link as={Link} to='/watchables-list'>Watchables List</Nav.Link>
+					<Nav.Link as={Link} to='/add'>Add a Watchable</Nav.Link>
+					<Nav.Link as={Link} to='/favorites'>View Favorites</Nav.Link>
 
 					{/* Conditional rendering nav items; commented this out because Nav items flashing upon page reloads */}
 					{/* {
