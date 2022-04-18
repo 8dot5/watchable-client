@@ -56,8 +56,8 @@ function CardBack({watchable, setWatchablesEdit, watchables, setWatchables, setF
 
     function handleRemoveFavorite(e) {
         e.preventDefault()
-        // fetch(`https://watchables-api.herokuapp.com/watchables/${id}`, {
-        fetch(`/watchables/${id}`, {
+        fetch(`https://watchables-api.herokuapp.com/watchables/${id}`, {
+        // fetch(`/watchables/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
